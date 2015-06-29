@@ -1,0 +1,43 @@
+.wcpk-wrapper,
+.wcpk-item {
+	display: inline-block;
+}
+
+.wcpk-wrapper {
+	width: 100%;
+}
+
+.wcpk-item {
+	margin-right: 2%;
+	float: left;
+}
+
+.wcpk-tooltip {
+    display: inline-block;
+    position: relative;
+}
+
+.wcpk-tooltip:hover:after {
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 110px;
+    color: #fff;
+    content: attr(data-tooltip);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+}
+
+.wcpk-tooltip:hover:before {
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 104px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}
