@@ -43,7 +43,7 @@ class Wcpk_Output {
 			echo '<div class="wcpk-wrapper">';
 				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
 					$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_textarea_meta_value_key', true );
-					$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'thumbnail');
+					$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
 					echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
 
 				endwhile;
