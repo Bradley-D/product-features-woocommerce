@@ -20,9 +20,7 @@ class Wcpk_Output {
 	 * @since 1.0
 	 */
 	function __construct() {
-		$this->wcpk_output_single_product();
-
-		add_filter( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product'), 12 );
+		add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 35 );
 	}
 
 	/**
@@ -31,7 +29,7 @@ class Wcpk_Output {
 	 */
 	// Need to add function in here
 	// - only applicable to the product
-	private function wcpk_output_single_product() {
+	public function wcpk_output_single_product() {
 		// Get some post keys args
 		$wcpk_args = array(
 			'post_type' => 'product-key',
@@ -44,9 +42,8 @@ class Wcpk_Output {
 		if ( $wcpk_query->have_posts() ) :
 			echo '<div class="wcpk-wrapper">';
 				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
-					$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_wysiwyg', true );
-					$wcpk_image = '<img src="' . get_post_meta( get_the_ID(), '_wcpk_image', true ) . '" />';
-
+					$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_textarea_meta_value_key', true );
+					$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'thumbnail');
 					echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
 
 				endwhile;

@@ -27,7 +27,7 @@ class Wcpk_Metaboxes {
 
 	/**
 	 * Adds metabox container
-	 *
+	 * @since 1.0
 	 */
 	function wcpk_add_metabox( $post_type ) {
 	
@@ -46,8 +46,7 @@ class Wcpk_Metaboxes {
 
 	/**
 	 * Save the meta when the post is saved.
-	 *
-	 * @param int $post_id The ID of the post being saved.
+	 * @since 1.0
 	 */
 	public function wcpk_save_metabox( $post_id ) {
 	
@@ -83,7 +82,9 @@ class Wcpk_Metaboxes {
 		}
 
 		/* OK, its safe for us to save the data now. */
-
+		if ( ! isset( $_POST['wcpk_text_field'] ) ) :
+			return;
+		endif;
 		// Sanitize the user input.
 		$wcpk_textarea_data = sanitize_text_field( $_POST['wcpk_textarea_field'] );
 		$wcpk_text_data = sanitize_text_field( $_POST['wcpk_text_field'] );
@@ -95,8 +96,7 @@ class Wcpk_Metaboxes {
 
 	/**
 	 * Render Meta Box content.
-	 *
-	 * @param WP_Post $post The post object.
+	 * @since 1.0
 	 */
 	public function wcpk_render_metabox_content( $post ) {
 	
@@ -104,15 +104,15 @@ class Wcpk_Metaboxes {
 		wp_nonce_field( 'wcpk_inner_custom_box', 'wcpk_inner_custom_box_nonce' );
 
 		// Use get_post_meta to retrieve an existing value from the database.
-		$wcpk_text_field = get_post_meta( $post->ID, '_wcpk_text_field_meta_value_key', true );
 		$wcpk_textarea_field = get_post_meta( $post->ID, '_wcpk_textarea_meta_value_key', true );
+		$wcpk_text_field = get_post_meta( $post->ID, '_wcpk_text_field_meta_value_key', true );
 
 		// Display the form, using the current value.
 		echo '<p><label for="wcpk-textarea_field">' . _e( 'Tooltip Text', 'wcpk' ) . '</label>
 				<textarea name="wcpk_textarea_field" id="wcpk_textarea_field" cols="60" rows="4">' . esc_attr( $wcpk_textarea_field ) . '</textarea></p>';
 
 		echo '<p><label for="wcpk_text_field">' . _e( 'Description for this field', 'wcpk' ) . '</label> 
-				<input type="text" id="wcpk_text_field" name="wcpk_text_field" value="' . esc_attr( $wcpk_text_field ) . '" size="25" /></p>';
+				<input type="text" id="wcpk_text_field" name="wcpk_text_field" value="' . esc_attr( $wcpk_text_field ) . '" size="60" /></p>';
 	}
 }
 
@@ -120,16 +120,16 @@ class Wcpk_Metaboxes {
  * Instantiate the class.
  * @since 1.0
  */
-// $wcpk_mb = new Wcpk_Metaboxes();
-function call_wcpk_Metaboxes() {
+function call_wcpk_metaboxe() {
 	new Wcpk_Metaboxes();
 }
 
 
 /**
  * Calls the metabox if user is admin
+ * @since 1.0
  */
 if ( is_admin() ) {
-	add_action( 'load-post.php', 'call_wcpk_Metaboxes' );
-	add_action( 'load-post-new.php', 'call_wcpk_Metaboxes' );
+	add_action( 'load-post.php', 'call_wcpk_metaboxe' );
+	add_action( 'load-post-new.php', 'call_wcpk_metaboxe' );
 }

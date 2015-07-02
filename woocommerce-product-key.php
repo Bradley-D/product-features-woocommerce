@@ -49,7 +49,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 */
 		public function __construct() {
 			$this->wcpk_includes();
-
 			add_action( 'wp_enqueue_scripts', array( $this, 'wcpk_enqueue_style' ) );
 		}
 
@@ -61,14 +60,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-cpt.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-settings.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-metaboxes.php';
+			require_once trailingslashit( dirname(  __FILE__) ) . 'classes/class-wcpk-output.php';
 		}
 
 		/**
 		 * Add Product Key styles.
 		 * @since 1.0
 		 */
-		function wcpk_enqueue_style() {
-			wp_enqueue_style( 'wcpk-style', trailingslashit( dirname( __FILE__ ) ) . 'css/wcpk.css', array(), '22062015' );
+		public function wcpk_enqueue_style() {
+			wp_enqueue_style( 'wcpk-style', plugins_url( '/css/wcpk.css', __FILE__ ), '22062015' );
 		}
 
 	} // END WooC_PK class
