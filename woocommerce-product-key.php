@@ -51,9 +51,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			$this->wcpk_includes();
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'wcpk_enqueue_style' ) );
-			//add_action( 'init', array( $this, 'wcpk_media' ) );
-			//add_action( 'init', array( $this, 'wcpk_cpt' ) );
-			//add_filter( 'woocommerce_single_product_summary', array( $this, 'wcpk_render_output_single_product'), 12 );
 		}
 
 		/**
@@ -62,8 +59,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 */
 		private function wcpk_includes() {
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-cpt.php';
-			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-cmb.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-settings.php';
+			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-metaboxes.php';
 		}
 
 		/**

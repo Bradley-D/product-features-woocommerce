@@ -21,6 +21,8 @@ class Wcpk_Output {
 	 */
 	function __construct() {
 		$this->wcpk_output_single_product();
+
+		add_filter( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product'), 12 );
 	}
 
 	/**
@@ -44,7 +46,7 @@ class Wcpk_Output {
 				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
 					$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_wysiwyg', true );
 					$wcpk_image = '<img src="' . get_post_meta( get_the_ID(), '_wcpk_image', true ) . '" />';
-		
+
 					echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
 
 				endwhile;
