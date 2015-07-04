@@ -20,6 +20,14 @@ class Wcpk_Output {
 	 * @since 1.0
 	 */
 	function __construct() {
+		$this->init();
+	}
+
+	/**
+	 * Init.
+	 * @since 1.0
+	 */
+	function init() {
 		add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 35 );
 	}
 
@@ -29,7 +37,7 @@ class Wcpk_Output {
 	 */
 	// Need to add function in here
 	// - only applicable to the product
-	public function wcpk_output_single_product() {
+	function wcpk_output_single_product() {
 		// Get some post keys args
 		$wcpk_args = array(
 			'post_type' => 'product-key',

@@ -47,8 +47,16 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * The Constructor.
 		 * @since 1.0
 		 */
-		public function __construct() {
+		function __construct() {
+			$this->init();
 			$this->wcpk_includes();
+		}
+
+		/**
+		 * Init.
+		 * @since 1.0
+		 */
+		function init() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'wcpk_enqueue_style' ) );
 		}
 
@@ -56,7 +64,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * Add the includes.
 		 * @since 1.0
 		 */
-		private function wcpk_includes() {
+		function wcpk_includes() {
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-cpt.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-settings.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-metaboxes.php';
@@ -67,7 +75,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * Add Product Key styles.
 		 * @since 1.0
 		 */
-		public function wcpk_enqueue_style() {
+		function wcpk_enqueue_style() {
 			wp_enqueue_style( 'wcpk-style', plugins_url( '/css/wcpk.css', __FILE__ ), '22062015' );
 		}
 

@@ -20,6 +20,10 @@ class Wcpk_Cpt {
 	 * @since 1.0
 	 */
 	function __construct() {
+		$this->init();
+	}
+
+	function init() {
 		add_action( 'init', array( $this, 'wcpk_cpt' ) );
 	}
 
