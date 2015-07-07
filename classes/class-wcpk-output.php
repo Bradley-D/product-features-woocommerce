@@ -39,8 +39,12 @@ class Wcpk_Output {
 	// - only applicable to the product
 	function wcpk_output_single_product() {
 		// Get some post keys args
+		$wcpk_current_product = get_the_ID();
+		var_dump( $wcpk_current_product );
+
 		$wcpk_args = array(
 			'post_type' => 'product-key',
+			'p'         => $wcpk_current_product,
 		);
 
 		// WCPK Query

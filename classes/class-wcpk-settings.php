@@ -98,35 +98,42 @@ class Wcpk_Settings {
 				'autoload' => false,
 			);
 			// Set image size
-			// $wcpk_add_settings[] = array(
-			// 	'title'    => __( 'Set Image Height & Width', 'wcpk' ),
-			// 	'desc'     => __( 'some type of image settings.', 'wcpk' ),
-			// 	'id'       => 'wcpk_image_size',
-			// 	'css'      => '',
-			// 	'type'     => 'image_width', // think this might need to change to text box
-			// 	'default'  => array(
-			// 		'width'  => '150',
-			// 		'height' => '150',
-			// 		'crop'   => 1
-			// 	),
-			// 	'desc_tip' =>  true,
-			// );
+			$wcpk_add_settings[] = array(
+				'title'       => __( 'Set Image Width', 'wcpk' ),
+				'desc'        => __( 'Set image width with px, eg, 100px', 'wcpk' ),
+				'placeholder' => 'Eg, 100px',
+				'id'          => 'wcpk-image-width',
+				'type'        => 'text',
+				'css'         => '',
+				'desc_tip'    => true,
+			);
+			$wcpk_add_settings[] = array(
+				'title'       => __( 'Set Image Height', 'wcpk' ),
+				'desc'        => __( 'Set image height with px, eg, 100px', 'wcpk' ),
+				'placeholder' => 'Eg, 100px',
+				'id'          => 'wcpk-image-height',
+				'type'        => 'text',
+				'css'         => '',
+				'desc_tip'    => true,
+			);
 			// Set Font Awesome size
 			$wcpk_add_settings[] = array(
 				'title'  => __( 'Set Font Awesome Size', 'wcpk' ),
 				'desc'   => __( 'Set font size with px or em, eg, 24px or 2em', 'wcpk' ),
+				'placeholder' => 'Eg, 20px or 2em',
 				'id'     => 'wcpk_fa_size',
 				'type'   => 'text',
-				'css'    => 'min-width:300px;',
-				'desc_trip' => true,
+				'css'    => '',
+				'desc_tip' => true,
 			);
 			$wcpk_add_settings[] = array(
 				'title'  => __( 'Set Text Size', 'wcpk' ),
 				'desc'   => __( 'Set text size with px or em, eg, 24px or 2em', 'wcpk' ),
+				'placeholder' => 'Eg, 20px or 2em',
 				'id'     => 'wcpk_text_size',
 				'type'   => 'text',
-				'css'    => 'min-width:300px;',
-				'desc_trip' => true,
+				'css'    => '',
+				'desc_tip' => true,
 			);
 			$wcpk_add_settings[] = array(
 				'type' => 'sectionend',
