@@ -157,7 +157,7 @@ class Wcpk_Metaboxes {
 		$wcpk_product_keys = get_posts( $wcpk_product_key_args ); ?>
 		<select name="" id="" style="width:100%;"><?php
 			foreach ( $wcpk_product_keys as $wcpk_product_key ) : ?>
-				<option value="<?php echo $wcpk_product_key->ID; ?>"><?php echo $wcpk_product_key->post_title; ?></option><?php
+				<option value="<?php echo esc_attr( $wcpk_product_key->ID ); ?>"><?php echo esc_attr( $wcpk_product_key->post_title ); ?></option><?php
 			endforeach; ?>
 		</select><?php
 
