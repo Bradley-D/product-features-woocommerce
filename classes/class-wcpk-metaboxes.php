@@ -173,13 +173,16 @@ class Wcpk_Metaboxes {
 		endif;
 
 	    // OK, its safe for us to save the data now.
-		// Sanitize the user input.
-        $wcpk_product_key_data = sanitize_text_field( $_POST['wcpk_selected_values'] );
 
-		// Update the meta field.
-        update_post_meta($post_id, '_wcpk_product_key_values', $wcpk_product_key_data);
+		// Update the post meta field.
+        update_post_meta($post_id, '_wcpk_product_key_values', $_POST['wcpk_selected_values'] );
+
 	}
 
+	/**
+	 * WC Product: Render the output for the metabox.
+	 * @since 1.0
+	 */
 	public function wcpk_wc_render_metabox_content( $post ) {
 
 		// Add a nonce field to check for
@@ -187,7 +190,6 @@ class Wcpk_Metaboxes {
 
 		// Get existing value from the database
 		$wcpk_product_key_data = get_post_meta( $post->ID, '_wcpk_product_key_values', true );
-		var_dump( $wcpk_product_key_data );
 
 		// Product Key args for display
 		$wcpk_product_key_args = array(
@@ -200,17 +202,23 @@ class Wcpk_Metaboxes {
 		$wcpk_product_keys = get_posts( $wcpk_product_key_args ); 
 
 		// Output the select list of product keys ?>
-		<select name="wcpk_selected_values" id="wcpk_selected_values" style="width:100%;"><?php
+		<p>Hold down Ctrl (Windows) or Command (Mac) to select multiple options.</p>
+		<select name="wcpk_selected_values[]" id="wcpk_selected_values" multiple style="width:100%;"><?php
+			
 			foreach ( $wcpk_product_keys as $wcpk_product_key ) : 
 				$wcpk_key_value = $wcpk_product_key->ID; ?>
+				
 				<option value="<?php echo esc_attr( $wcpk_key_value); ?>"<?php 
-					if ( $wcpk_key_value == $wcpk_product_key_data ) :
+					if ( in_array( $wcpk_key_value, $wcpk_product_key_data ) ) :
 						echo 'selected';
 					endif; ?>
 				><!-- DONT REMOVE - ENDS option --><?php 
 					echo esc_attr( $wcpk_product_key->post_title ); ?>
+					
 				</option><?php
+			
 			endforeach; ?>
+		
 		</select><?php
 
 		// Reset postdata cause that's the rad thing to do.
