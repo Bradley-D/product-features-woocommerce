@@ -52,13 +52,11 @@ class Wcpk_Metaboxes {
 	 * Product Key: Save the meta when the post is saved.
 	 * @since 1.0
 	 */
-	public function wcpk_save_metabox( $post_id ) {
-	
+	public function wcpk_save_metabox( $post_id ) {	
 		/*
 		 * We need to verify this came from the our screen and with proper authorization,
 		 * because save_post can be triggered at other times.
 		 */
-
 		// Check if our nonce is set.
 		if ( ! isset( $_POST['wcpk_inner_custom_box_nonce'] ) ) :
 			return $post_id;
@@ -78,17 +76,13 @@ class Wcpk_Metaboxes {
 
 		// Check the user's permissions.
 		if ( 'page' == $_POST['post_type'] ) :
-
 			if ( ! current_user_can( 'edit_page', $post_id ) ) :
 				return $post_id;
 			endif;
-	
 		else :
-
 			if ( ! current_user_can( 'edit_post', $post_id ) ) :
 				return $post_id;
 			endif;
-
 		endif;
 
 		/* OK, its safe for us to save the data now. */
@@ -144,24 +138,82 @@ class Wcpk_Metaboxes {
 	 * WC Product: Save the meta when the post is saved.
 	 * @since 1.0
 	 */
-	public function wcpk_wc_save_metabox( $post_id ) {}
+	public function wcpk_wc_save_metabox( $post_id ) {
+		/*
+		 * We need to verify this came from the our screen and with proper authorization,
+		 * because save_post can be triggered at other times.
+		 */
+		// Check if our nonce is set.
+		if ( ! isset( $_POST['wcpk_wc_metabox_nonce'] ) ) :
+			return $post_id;
+		endif;
+
+		$nonce = $_POST['wcpk_wc_metabox_nonce'];
+
+		// Verify that the nonce is valid.
+		if ( ! wp_verify_nonce( $nonce, 'wcpk_wc_save_metabox_nonce' ) ) :
+			return $post_id;
+		endif;
+
+		// If this is an autosave, out form has not been submitted,
+		// so we don't want to do anything.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) :
+			return $post_id;
+		endif;
+
+		// Check the user's permissions.
+		if ( 'page' == $_POST['post_type'] ) :
+			if ( ! current_user_can( 'edit_post', $post_id ) ) :
+				return $post_id;
+			endif;
+		else :
+			if ( ! current_user_can( 'edit_post', $post_id ) ) :
+				return $post_id;
+			endif;
+		endif;
+
+	    // OK, its safe for us to save the data now.
+		// Sanitize the user input.
+        $wcpk_product_key_data = sanitize_text_field( $_POST['wcpk_selected_values'] );
+
+		// Update the meta field.
+        update_post_meta($post_id, '_wcpk_product_key_values', $wcpk_product_key_data);
+	}
 
 	public function wcpk_wc_render_metabox_content( $post ) {
 
+		// Add a nonce field to check for
+		wp_nonce_field( 'wcpk_wc_save_metabox_nonce', 'wcpk_wc_metabox_nonce' );
+
+		// Get existing value from the database
+		$wcpk_product_key_data = get_post_meta( $post->ID, '_wcpk_product_key_values', true );
+		var_dump( $wcpk_product_key_data );
+
+		// Product Key args for display
 		$wcpk_product_key_args = array(
 			'post_type' => 'product-key',
 			'orderby'   => 'title',
 			'order'     => 'ASC'
 		);
 
-		$wcpk_product_keys = get_posts( $wcpk_product_key_args ); ?>
-		<select name="" id="" style="width:100%;"><?php
-			foreach ( $wcpk_product_keys as $wcpk_product_key ) : ?>
-				<option value="<?php echo esc_attr( $wcpk_product_key->ID ); ?>"><?php echo esc_attr( $wcpk_product_key->post_title ); ?></option><?php
+		// Use get_posts with args to return product keys
+		$wcpk_product_keys = get_posts( $wcpk_product_key_args ); 
+
+		// Output the select list of product keys ?>
+		<select name="wcpk_selected_values" id="wcpk_selected_values" style="width:100%;"><?php
+			foreach ( $wcpk_product_keys as $wcpk_product_key ) : 
+				$wcpk_key_value = $wcpk_product_key->ID; ?>
+				<option value="<?php echo esc_attr( $wcpk_key_value); ?>"<?php 
+					if ( $wcpk_key_value == $wcpk_product_key_data ) :
+						echo 'selected';
+					endif; ?>
+				><!-- DONT REMOVE - ENDS option --><?php 
+					echo esc_attr( $wcpk_product_key->post_title ); ?>
+				</option><?php
 			endforeach; ?>
 		</select><?php
 
-		/* Reset postdata */ 
+		// Reset postdata cause that's the rad thing to do.
 		wp_reset_postdata(); 
 	}
 }
