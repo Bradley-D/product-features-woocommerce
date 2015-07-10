@@ -149,21 +149,20 @@ class Wcpk_Metaboxes {
 	public function wcpk_wc_render_metabox_content( $post ) {
 
 		$wcpk_product_key_args = array(
-			'post_type' => 'product-key'
+			'post_type' => 'product-key',
+			'orderby'   => 'title',
+			'order'     => 'ASC'
 		);
 
-		$wcpk_product_key = new WP_Query( $wcpk_product_key_args );
+		$wcpk_product_keys = get_posts( $wcpk_product_key_args ); ?>
+		<select name="" id="" style="width:100%;"><?php
+			foreach ( $wcpk_product_keys as $wcpk_product_key ) : ?>
+				<option value="<?php echo $wcpk_product_key->ID; ?>"><?php echo $wcpk_product_key->post_title; ?></option><?php
+			endforeach; ?>
+		</select><?php
 
-		if ( $wcpk_product_key->have_posts() ) :  ?>
-			<select name="" id=""><?php
-			while ( $wcpk_product_key->have_posts() ) : $wcpk_product_key->the_post(); ?>
-				<option value="<?php echo get_the_ID(); ?>"><?php the_title(); ?></option>;<?php
-			endwhile; ?>
-			</select><?php
-		endif;
-
-		/* Restore original Post Data */
-		wp_reset_postdata();
+		/* Reset postdata */ 
+		wp_reset_postdata(); 
 	}
 }
 
