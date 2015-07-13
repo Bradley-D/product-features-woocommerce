@@ -35,6 +35,9 @@ class Wcpk_Output {
 			case 'wcpk-after-gallery' :
 				add_action( 'woocommerce_before_single_product_summary', array( $this, 'wcpk_output_single_product'), 21 );
 				break;
+			case 'wcpk-after-heading' :
+				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 6 );
+				break;
 			case 'wcpk-after-price' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 11 );
 				break;

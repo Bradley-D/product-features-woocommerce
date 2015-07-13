@@ -90,6 +90,7 @@ class Wcpk_Settings {
 				'desc_tip' =>  true,
 				'options'  => array(
 					'wcpk-after-gallery'      => __( 'After product gallery', 'wcpk' ),
+					'wcpk-after-heading'        => __( 'After product heading', 'wcpk' ),
 					'wcpk-after-price'        => __( 'After product price', 'wcpk' ),
 					'wcpk-after-short-desc'   => __( 'After short description', 'wcpk' ),
 					'wcpk-after-add-cart'     => __( 'After add to cart', 'wcpk' ),
