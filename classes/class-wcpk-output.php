@@ -28,7 +28,26 @@ class Wcpk_Output {
 	 * @since 1.0
 	 */
 	function init() {
-		add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 35 );
+
+		// Location to add the product key(s)
+		$wcpk_render_location_setting = get_option( 'wcpk_render_location' );
+		switch ( $wcpk_render_location_setting ) :
+			case 'wcpk-after-gallery' :
+				add_action( 'woocommerce_before_single_product_summary', array( $this, 'wcpk_output_single_product'), 21 );
+				break;
+			case 'wcpk-after-price' :
+				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 11 );
+				break;
+			case 'wcpk-after-short-desc' :
+				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 21 );
+				break;
+			case 'wcpk-after-add-cart' :
+				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 31 );
+				break;
+			case 'wcpk-after-product-meta' :
+				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ),  41 );
+				break;
+		endswitch;
 	}
 
 	/**
@@ -49,22 +68,25 @@ class Wcpk_Output {
 
 		// Loop through the WCPK query
 		if ( $wcpk_query->have_posts() ) :
-			echo '<div class="wcpk-wrapper">';
-				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
 
+			echo '<div class="wcpk-wrapper">';
+
+				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
 					// The product key ID(s) are in the product key check variable it is time to party
 					if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
 
+						// Get the product key assets
 						$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_textarea_meta_value_key', true );
 						$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
 
 						// Output the product keys
 						echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
-					 
-					 endif;
 
+					 endif;
 				endwhile;
+
 			echo '</div>';
+
 		endif;
 
 		// Restore the data
