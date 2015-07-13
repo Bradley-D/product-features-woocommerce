@@ -38,13 +38,12 @@ class Wcpk_Output {
 	// Need to add function in here
 	// - only applicable to the product
 	function wcpk_output_single_product() {
-		// Get some post keys args
-		$wcpk_current_product = get_the_ID();
-		var_dump( $wcpk_current_product );
+		// Get the product key(s) ID for the product
+		$wcpk_product_key_check = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true);
 
+		// Get post type product key for query
 		$wcpk_args = array(
 			'post_type' => 'product-key',
-			'p'         => $wcpk_current_product,
 		);
 
 		// WCPK Query
@@ -54,9 +53,17 @@ class Wcpk_Output {
 		if ( $wcpk_query->have_posts() ) :
 			echo '<div class="wcpk-wrapper">';
 				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
-					$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_textarea_meta_value_key', true );
-					$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
-					echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
+
+					// The product key ID(s) are in the product key check variable it is time to party
+					if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
+
+						$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_textarea_meta_value_key', true );
+						$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
+
+						// Output the product keys
+						echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
+					 
+					 endif;
 
 				endwhile;
 			echo '</div>';
