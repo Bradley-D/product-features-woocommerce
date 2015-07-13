@@ -79,7 +79,7 @@ class Wcpk_Output {
 					if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
 
 						// Get the product key assets
-						$wcpk_tooltip_text = get_post_meta( get_the_ID(), '_wcpk_textarea_meta_value_key', true );
+						$wcpk_tooltip_text = get_the_content();
 						$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
 
 						// Output the product keys

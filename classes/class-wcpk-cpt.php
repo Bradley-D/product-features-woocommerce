@@ -61,7 +61,7 @@ class Wcpk_Cpt {
 			'hierarchical'       => false,
 			'menu_position'      => null,
 			'menu_icon'          => 'dashicons-admin-network',
-			'supports'           => array( 'title', 'thumbnail' )
+			'supports'           => array( 'title', 'editor', 'thumbnail' )
 		);
 		register_post_type( 'product-key', $args );
 	}
