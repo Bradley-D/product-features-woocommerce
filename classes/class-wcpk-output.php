@@ -35,8 +35,6 @@ class Wcpk_Output {
 	 * Render output - Single Product
 	 * @since 1.0
 	 */
-	// Need to add function in here
-	// - only applicable to the product
 	function wcpk_output_single_product() {
 		// Get the product key(s) ID for the product
 		$wcpk_product_key_check = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true);
