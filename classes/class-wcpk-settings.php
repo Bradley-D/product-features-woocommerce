@@ -86,7 +86,7 @@ class Wcpk_Settings {
 				'type'     => 'select',
 				'class'    => 'wcpk-select',
 				'css'      => 'min-width:300px;',
-				'default'  => 'wcpk-after-short-desc',
+				'default'  => 'wcpk-after-add_cart',
 				'desc_tip' =>  true,
 				'options'  => array(
 					'wcpk-after-gallery'      => __( 'After product gallery', 'wcpk' ),
