@@ -102,6 +102,8 @@ class Wcpk_Metaboxes {
 	 * Product Key: Render Meta Box content.
 	 * @since 1.0
 	 */
+	// Font awesome selects, will need to check against 4.3 version 
+	// https://github.com/FortAwesome/Font-Awesome/wiki/Font-Awesome-HTML-Dropdown-Select-List
 	public function wcpk_render_metabox_content( $post ) {
 	
 		// Add an nonce field so we can check for it later.
