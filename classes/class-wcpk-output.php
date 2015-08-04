@@ -59,41 +59,46 @@ class Wcpk_Output {
 	 */
 	function wcpk_output_single_product() {
 		// Get the product key(s) ID for the product
-		$wcpk_product_key_check = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true);
+		$wcpk_product_key_check = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true );
 
-		// Get post type product key for query
-		$wcpk_args = array(
-			'post_type' => 'product-key',
-		);
+		// If product keys are assigned to product output
+		if ( '' != $wcpk_product_key_check ) :
 
-		// WCPK Query
-		$wcpk_query = new WP_Query( $wcpk_args );
+			// Get post type product key for query
+			$wcpk_args = array(
+				'post_type' => 'product-key',
+			);
 
-		// Loop through the WCPK query
-		if ( $wcpk_query->have_posts() ) :
+			// WCPK Query
+			$wcpk_query = new WP_Query( $wcpk_args );
 
-			echo '<div class="wcpk-wrapper">';
+			// Loop through the WCPK query
+			if ( $wcpk_query->have_posts() ) :
 
-				while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
-					// The product key ID(s) are in the product key check variable it is time to party
-					if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
+				echo '<div class="wcpk-wrapper">';
 
-						// Get the product key assets
-						$wcpk_tooltip_text = get_the_content();
-						$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
+					while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
+						// The product key ID(s) are in the product key check variable it is time to party
+						if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
 
-						// Output the product keys
-						echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
+							// Get the product key assets
+							$wcpk_tooltip_text = get_the_content();
+							$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
 
-					 endif;
-				endwhile;
+							// Output the product keys
+							echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
 
-			echo '</div>';
+						 endif;
+					endwhile;
+
+				echo '</div>';
+
+			endif;
+
+			// Restore the data
+			wp_reset_postdata();
 
 		endif;
-
-		// Restore the data
-		wp_reset_postdata();
 	}
 
 	// function wcpk_render_output_archive() {}

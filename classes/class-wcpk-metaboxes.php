@@ -205,14 +205,24 @@ class Wcpk_Metaboxes {
 
 		// Output the select list of product keys ?>
 		<p>Hold down Ctrl (Windows) or Command (Mac) to select multiple options.</p>
-		<select name="wcpk_selected_values[]" id="wcpk_selected_values" multiple style="width:100%;"><?php
+		<select name="wcpk_selected_values[]" id="wcpk_selected_values" multiple style="width:100%;">
+			
+			<!-- First Option-->
+			<option value="null" <?php
+				if ( '' == $wcpk_product_key_data || '1' == sizeof( $wcpk_product_key_data ) && in_array( 'null', $wcpk_product_key_data ) ) :
+					echo 'selected';
+				endif; ?>
+			><!-- DONT REMOVE - ENDS option -->
+			<?php echo __( 'None', 'wcpk' ); ?></option><?php
 			
 			foreach ( $wcpk_product_keys as $wcpk_product_key ) : 
 				$wcpk_key_value = $wcpk_product_key->ID; ?>
 				
-				<option value="<?php echo esc_attr( $wcpk_key_value); ?>"<?php 
-					if ( in_array( $wcpk_key_value, $wcpk_product_key_data ) ) :
-						echo 'selected';
+				<option value="<?php echo esc_attr( $wcpk_key_value ); ?>"<?php
+					if ( '' != $wcpk_product_key_data ) :
+						if ( in_array( $wcpk_key_value, $wcpk_product_key_data ) ) :
+							echo 'selected';
+						endif;
 					endif; ?>
 				><!-- DONT REMOVE - ENDS option --><?php 
 					echo esc_attr( $wcpk_product_key->post_title ); ?>
