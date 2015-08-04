@@ -68,7 +68,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-cpt.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-settings.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-metaboxes.php';
-			require_once trailingslashit( dirname(  __FILE__) ) . 'classes/class-wcpk-output.php';
+			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-output.php';
+			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-style.php';
 		}
 
 		/**
