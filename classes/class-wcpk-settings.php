@@ -44,14 +44,16 @@ class Wcpk_Settings {
 	 */
 	function wcpk_add_settings( $wp_customize ) {
 		// Add WCPK panel
-		$wp_customize->add_panel( 'wcpk_settings', array(
-			'title'       => __( 'Product Key Settings', 'wcpk' ),
-			'description' => __( 'Personalize your product keys.', 'wcpk' ),
-			'priority'    => 1000,
-		) );
+		$wp_customize->add_panel( 'wcpk_settings',
+			array(
+				'title'       => __( 'Product Key Settings', 'wcpk' ),
+				'description' => __( 'Personalize your product keys.', 'wcpk' ),
+				'priority'    => 1000,
+			)
+		);
 		// General options section
-		$wp_customize->add_section(
-			'wcpk_options', array(
+		$wp_customize->add_section( 'wcpk_options',
+			array(
 				'title'      => __( 'General Options', 'wcpk' ),
 			  	'panel'      => 'wcpk_settings',
 			  	'capability' => '',
@@ -59,8 +61,8 @@ class Wcpk_Settings {
 			)
 		);
 		// Feature Image Section
-		$wp_customize->add_section(
-			'wcpk_options_fi', array(
+		$wp_customize->add_section( 'wcpk_options_fi',
+			array(
 				'title'      => __( 'Feature Image Settings', 'wcpk' ),
 				'panel'      => 'wcpk_settings',
 				'capability' => '',
@@ -68,8 +70,8 @@ class Wcpk_Settings {
 			)
 		);
 		// Font Awesome Section
-		$wp_customize->add_section(
-			'wcpk_options_fa', array(
+		$wp_customize->add_section( 'wcpk_options_fa',
+			array(
 				'title'      => __( 'Font Awesome Settings', 'wcpk'),
 				'panel'      => 'wcpk_settings',
 				'capability' => '',
@@ -77,8 +79,8 @@ class Wcpk_Settings {
 			)
 		);
 		// Tooltip Section
-		$wp_customize->add_section(
-			'wcpk_options_tt', array(
+		$wp_customize->add_section( 'wcpk_options_tt',
+			array(
 				'title'      => __( 'Tooltip Settings', 'wcpk' ),
 				'panel'      => 'wcpk_settings',
 				'capability' => '',
@@ -90,14 +92,14 @@ class Wcpk_Settings {
 		 * @since 1.0
 		 */
 		// Choose PK Type
-		$wp_customize->add_setting(
-			'wcpk_key_type', array(
+		$wp_customize->add_setting( 'wcpk_key_type',
+			array(
 				'default' => 'wcpk-image-thumb',
 				//'sanitize_callback' => '',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_key_type', array(
+		$wp_customize->add_control( 'wcpk_key_type',
+			array(
 				'label'    => __( 'Choose Key Type', 'wcpk' ),
 				'settings' => 'wcpk_key_type',
 				'section'  => 'wcpk_options',
@@ -110,13 +112,13 @@ class Wcpk_Settings {
 			)
 		);
 		// Choose PK Location
-		$wp_customize->add_setting(
-			'wcpk_render_location', array(
+		$wp_customize->add_setting( 'wcpk_render_location',
+			array(
 				'default' => 'wcpk-after-short-desc',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_render_location', array(
+		$wp_customize->add_control( 'wcpk_render_location',
+			array(
 				'label'    => __( 'Choose Display Location', 'wcpk' ),
 				'settings' => 'wcpk_render_location',
 				'section'  => 'wcpk_options',
@@ -137,13 +139,13 @@ class Wcpk_Settings {
 		 * @since 1.0
 		 */
 		// Image Width 
-		$wp_customize->add_setting(
-			'wcpk_image_width', array(
+		$wp_customize->add_setting( 'wcpk_image_width',
+			array(
 				'default' => 'wcpk-image-width-six',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_image_width', array(
+		$wp_customize->add_control( 'wcpk_image_width',
+			array(
 				'label'    => __( 'Choose Image Width', 'wcpk' ),
 				'settings' => 'wcpk_image_width',
 				'section'  => 'wcpk_options_fi',
@@ -159,13 +161,13 @@ class Wcpk_Settings {
 			)
 		);
 		// Border Width
-		$wp_customize->add_setting(
-			'wcpk_image_border', array(
+		$wp_customize->add_setting( 'wcpk_image_border',
+			array(
 				'default' => 'wcpk_image_border_zero',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_image_border', array(
+		$wp_customize->add_control( 'wcpk_image_border',
+			array(
 				'label'     => __( 'Image Border Width', 'wcpk' ),
 				'settings'  => 'wcpk_image_border',
 				'section'   => 'wcpk_options_fi',
@@ -184,30 +186,27 @@ class Wcpk_Settings {
 			)
 		);
 		// Border Color
-		$wp_customize->add_setting(
-			'wcpk_border_color', array(
+		$wp_customize->add_setting( 'wcpk_border_color',
+			array(
 				'default' => '#ddd',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'wcpk_border_color', array(
-					'label'    => __( 'Border Color', 'wcpk' ),
-					'settings' => 'wcpk_border_color',
-					'section'  => 'wcpk_options_fi',
-				)
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_border_color',
+			array(
+				'label'    => __( 'Border Color', 'wcpk' ),
+				'settings' => 'wcpk_border_color',
+				'section'  => 'wcpk_options_fi',
 			)
-		);
+		) );
 		// Image Padding
-		$wp_customize->add_setting(
-			'wcpk_image_padding', array(
+		$wp_customize->add_setting( 'wcpk_image_padding',
+			array(
 				'default' => 'wcpk_image_padding_zero',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_image_padding', array(
+		$wp_customize->add_control( 'wcpk_image_padding',
+			array(
 				'label'      => __( 'Image Padding', 'wcpk' ),
 				'settings'   => 'wcpk_image_padding',
 				'section'    => 'wcpk_options_fi',
@@ -226,22 +225,19 @@ class Wcpk_Settings {
 			)
 		);
 		// Image background color
-		$wp_customize->add_setting(
-			'wcpk_image_bg', array(
-				'default' => '#fff',
+		$wp_customize->add_setting( 'wcpk_image_bg',
+			array(
+				'default'           => '#fff',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'wcpk_border_color', array(
-					'label'    => __( 'Background Color', 'wcpk' ),
-					'settings' => 'wcpk_image_bg',
-					'section'  => 'wcpk_options_fi',
-				)
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_border_color',
+			array(
+				'label'    => __( 'Background Color', 'wcpk' ),
+				'settings' => 'wcpk_image_bg',
+				'section'  => 'wcpk_options_fi',
 			)
-		);
+		) );
 
 		// $wp_customize->add_setting();
 		// $wp_customize->add_control();
@@ -251,13 +247,13 @@ class Wcpk_Settings {
 		 * Font Awesome Options
 		 * @since 1.0
 		 */
-		$wp_customize->add_setting(
-			'wcpk_fa_size', array(
+		$wp_customize->add_setting( 'wcpk_fa_size',
+			array(
 				'default' => 'wcpk_fa_sixteen',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_fa_size', array(
+		$wp_customize->add_control( 'wcpk_fa_size',
+			array(
 				'label'    => __( 'Choose Font Size', 'wcpk' ),
 				'settings' => 'wcpk_fa_size',
 				'section'  => 'wcpk_options_fa',
@@ -277,48 +273,42 @@ class Wcpk_Settings {
 		 * @since 1.0
 		 */
 		// Tooltip Font Color
-		$wp_customize->add_setting(
-			'wcpk_tooltip_font_color', array(
+		$wp_customize->add_setting( 'wcpk_tooltip_font_color',
+			array(
 				'default' => '#fff',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'wcpk_tooltip_font_color', array(
-					'label'    => __( 'Font Color', 'wcpk' ),
-					'settings' => 'wcpk_tooltip_font_color',
-					'section'  => 'wcpk_options_tt',
-				)
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_tooltip_font_color',
+			array(
+				'label'    => __( 'Font Color', 'wcpk' ),
+				'settings' => 'wcpk_tooltip_font_color',
+				'section'  => 'wcpk_options_tt',
 			)
-		);
+		) );
 		// Tooltip Background
-		$wp_customize->add_setting(
-			'wcpk_tooltip_bg', array(
-				'default' => '#333',
+		$wp_customize->add_setting( 'wcpk_tooltip_bg',
+			array(
+				'default'           => '#333',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'wcpk_tooltip_bg', array(
-					'label'    => __( 'Background Color', 'wcpk' ),
-					'settings' => 'wcpk_tooltip_bg',
-					'section'  => 'wcpk_options_tt',
-				)
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_tooltip_bg', 
+			array(
+				'label'    => __( 'Background Color', 'wcpk' ),
+				'settings' => 'wcpk_tooltip_bg',
+				'section'  => 'wcpk_options_tt',
 			)
-		);
+		) );
 		// Tooltip Opacity
-		$wp_customize->add_setting(
-			'wcpk_tooltip_opacity', array(
-				'default' => '10',
+		$wp_customize->add_setting( 'wcpk_tooltip_opacity',
+			array(
+				'default'           => '10',
 				'sanitize_callback' => '',
 			)
 		);
-		$wp_customize->add_control(
-			'wcpk_tooltip_opacity', array(
+		$wp_customize->add_control( 'wcpk_tooltip_opacity',
+			array(
 				'label'    => __( 'Background Opacity', 'wcpk' ),
 				'settings' => 'wcpk_tooltip_opacity',
 				'section'  => 'wcpk_options_tt',
@@ -330,9 +320,7 @@ class Wcpk_Settings {
 				),
 			)
 		);
-
 	}
-
 }
 
 /**
