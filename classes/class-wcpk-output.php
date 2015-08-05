@@ -30,7 +30,8 @@ class Wcpk_Output {
 	function init() {
 
 		// Location to add the product key(s)
-		$wcpk_render_location_setting = get_option( 'wcpk_render_location' );
+		$wcpk_render_location_setting = get_theme_mod( 'wcpk_render_location', 'wcpk-after-short-desc' );
+		var_dump( $wcpk_render_location_setting );
 		switch ( $wcpk_render_location_setting ) :
 			case 'wcpk-after-gallery' :
 				add_action( 'woocommerce_before_single_product_summary', array( $this, 'wcpk_output_single_product'), 21 );
