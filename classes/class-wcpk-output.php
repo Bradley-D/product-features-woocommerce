@@ -28,27 +28,25 @@ class Wcpk_Output {
 	 * @since 1.0
 	 */
 	function init() {
-
 		// Location to add the product key(s)
-		$wcpk_render_location_setting = get_theme_mod( 'wcpk_render_location', 'wcpk-after-short-desc' );
-		var_dump( $wcpk_render_location_setting );
+		$wcpk_render_location_setting = get_theme_mod( 'wcpk_customizer[render_location]', 'wcpk_after_short_desc' );
 		switch ( $wcpk_render_location_setting ) :
-			case 'wcpk-after-gallery' :
+			case 'wcpk_after_gallery' :
 				add_action( 'woocommerce_before_single_product_summary', array( $this, 'wcpk_output_single_product'), 21 );
 				break;
-			case 'wcpk-after-heading' :
+			case 'wcpk_after_heading' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 6 );
 				break;
-			case 'wcpk-after-price' :
+			case 'wcpk_after_price' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 11 );
 				break;
-			case 'wcpk-after-short-desc' :
+			case 'wcpk_after_short_desc' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 21 );
 				break;
-			case 'wcpk-after-add-cart' :
+			case 'wcpk_after_add_cart' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ), 31 );
 				break;
-			case 'wcpk-after-product-meta' :
+			case 'wcpk_after_product_meta' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'wcpk_output_single_product' ),  41 );
 				break;
 		endswitch;
