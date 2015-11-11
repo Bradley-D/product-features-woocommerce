@@ -27,41 +27,31 @@ class Wcpk_Style {
      * Customizer styles
      * @since 1.0
      */
-    function wcpk_customizer_css() {
-        // Get WCPK Customizer settings as array
-        if ( '' != get_theme_mod( 'wcpk_customizer' ) ) :
-            $wcpk_customizer_settings = get_theme_mod( 'wcpk_customizer' );
-        endif; ?>
-
+    function wcpk_customizer_css() { ?>
         <style type="text/css">
             /* Feature Image Options */
-            .wcpk_item {
+            .wcpk-item {
                 /* Image Width */
-                max-width: <?php echo $wcpk_customizer_settings['image_width']; ?>;
+                max-width: <?php echo get_theme_mod( 'wcpk_image_width' ); ?>%;
                 /* Border Width */
-                border-width: <?php echo $wcpk_customizer_settings['image_border']; ?>;
+                border-width: <?php echo get_theme_mod( 'wcpk_image_border' ); ?>px;
                 /* Border Color */
-                border-color: <?php echo $wcpk_customizer_settings['border_color']; ?>;
+                border-color: <?php echo get_theme_mod( 'wcpk_border_color' ); ?>;
                 /* Image Padding*/
-                padding: <?php echo $wcpk_customizer_settings['image_padding']; ?>;
+                padding: <?php echo get_theme_mod( 'wcpk_image_padding' ); ?>px;
                 /* Image Background */
-                background-color: <?php echo $wcpk_customizer_settings['image_bg']; ?>;
-                /* Font Awesome Options */ <?php 
-                if ( 'wcpk_image_font' == $wcpk_customizer_settings['key_type'] ) : ?>
-                    font-size: <?php echo $wcpk_customizer_settings['fa_size']; ?>;     
-                <?php endif; ?>
+                background-color: <?php echo get_theme_mod( 'wcpk_image_bg' ); ?>;
             }
             /* Tooltip Options */
             .wcpk-tooltip:hover:before {
                 /* Font Color */
-                color: <?php echo $wcpk_customizer_settings['tooltip_font_color']; ?>;
+                color: <?php echo get_theme_mod( 'wcpk_tooltip_font_color' ); ?>;
                 /* Background Color */
-                background-color: <?php echo $wcpk_customizer_settings['tooltip_bg']?>;
+                background-color: <?php echo get_theme_mod( 'wcpk_tooltip_bg' ); ?>;
             }
         </style> <?php
     }
 } // END Wcpk_Style class
-
 
 /**
  * Instantiate the class.
