@@ -21,6 +21,7 @@ class Wcpk_Output {
 	 */
 	function __construct() {
 		$this->init();
+		$this->wcpk_output_location();
 	}
 
 	/**
@@ -28,8 +29,18 @@ class Wcpk_Output {
 	 * @since 1.0
 	 */
 	function init() {
+		$test = get_theme_mod( 'wcpk_image_width' );
+		var_dump($test);
+	}
+
+	/**
+	 * Output location - Single Product.
+	 * @since 1.0
+	 */
+	function wcpk_output_location() {
 		// Location to add the product key(s)
-		$wcpk_render_location_setting = get_theme_mod( 'wcpk_customizer[render_location]', 'wcpk_after_short_desc' );
+		$wcpk_render_location_setting = get_theme_mod( 'wcpk_render_location', 'wcpk_after_short_desc' );
+		
 		switch ( $wcpk_render_location_setting ) :
 			case 'wcpk_after_gallery' :
 				add_action( 'woocommerce_before_single_product_summary', array( $this, 'wcpk_output_single_product'), 21 );
@@ -72,26 +83,19 @@ class Wcpk_Output {
 			$wcpk_query = new WP_Query( $wcpk_args );
 
 			// Loop through the WCPK query
-			if ( $wcpk_query->have_posts() ) :
-
-				echo '<div class="wcpk-wrapper">';
-
+			if ( $wcpk_query->have_posts() ) : ?>
+				<div class="wcpk-wrapper"><?php
 					while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
 						// The product key ID(s) are in the product key check variable it is time to party
 						if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
-
 							// Get the product key assets
 							$wcpk_tooltip_text = get_the_content();
 							$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
-
-							// Output the product keys
-							echo '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="' . $wcpk_tooltip_text . '">' . $wcpk_image . '</div></a>';
-
-						 endif;
-					endwhile;
-
-				echo '</div>';
-
+							// Output the product keys ?>
+							<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="<?php echo $wcpk_tooltip_text; ?>"><?php echo $wcpk_image; ?></div></a><?php
+						endif;
+					endwhile; ?>
+				</div><?php
 			endif;
 
 			// Restore the data
@@ -105,4 +109,8 @@ class Wcpk_Output {
 	// function wcpk_render_output_single_key() {}
 }
 
+/**
+ * Instantiate the class.
+ * @since 1.0
+ */
 $wcpk_ouput = new Wcpk_Output();

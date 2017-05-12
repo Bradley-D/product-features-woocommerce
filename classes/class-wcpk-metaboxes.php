@@ -38,14 +38,8 @@ class Wcpk_Metaboxes {
 	 * @since 1.0
 	 */
 	function wcpk_add_metabox() {
-		add_meta_box(
-			'wcpk_metaboxes', 
-			__( 'WooCommerce Product Key', 'wcpk' ),
-			array( $this, 'wcpk_render_metabox_content' ),
-			'product-key',
-			'normal',
-			'low'
-		);
+		add_meta_box( 'wcpk_metaboxes', __( 'WooCommerce Product Key', 'wcpk' ),
+			array( $this, 'wcpk_render_metabox_content' ), 'product-key', 'normal', 'low' );
 	}
 
 	/**
@@ -85,7 +79,7 @@ class Wcpk_Metaboxes {
 			endif;
 		endif;
 
-		/* OK, its safe for us to save the data now. */
+		// OK, its safe for us to save the data now.
 		if ( ! isset( $_POST['wcpk_text_field'] ) ) :
 			return;
 		endif;
@@ -113,12 +107,12 @@ class Wcpk_Metaboxes {
 		$wcpk_textarea_field = get_post_meta( $post->ID, '_wcpk_textarea_meta_value_key', true );
 		$wcpk_text_field = get_post_meta( $post->ID, '_wcpk_text_field_meta_value_key', true );
 
-		// Display the form, using the current value.
-		echo '<p><label for="wcpk-textarea_field">' . _e( 'Tooltip Text', 'wcpk' ) . '</label>
-				<textarea name="wcpk_textarea_field" id="wcpk_textarea_field" cols="60" rows="4">' . esc_attr( $wcpk_textarea_field ) . '</textarea></p>';
+		// Display the form, using the current value.?>
+		<p><label for="wcpk-textarea_field"><?php echo _e( 'Tooltip Text', 'wcpk' ); ?></label><br/>
+			<textarea name="wcpk_textarea_field" id="wcpk_textarea_field" cols="60" rows="4"><?php echo esc_attr( $wcpk_textarea_field ); ?></textarea></p>
 
-		echo '<p><label for="wcpk_text_field">' . _e( 'Description for this field', 'wcpk' ) . '</label> 
-				<input type="text" id="wcpk_text_field" name="wcpk_text_field" value="' . esc_attr( $wcpk_text_field ) . '" size="60" /></p>';
+		<p><label for="wcpk_text_field"><?php echo _e( 'Description for this field', 'wcpk' ); ?></label><br/> 
+			<input type="text" id="wcpk_text_field" name="wcpk_text_field" value="<?php echo esc_attr( $wcpk_text_field ); ?>" size="60" /></p><?php
 	}
 
 	/**
@@ -126,14 +120,8 @@ class Wcpk_Metaboxes {
 	 * @since 1.0
 	 */
 	function wcpk_wc_add_metabox() {	
-		add_meta_box(
-			'wcpk_wc_metaboxes', 
-			__( 'Select Product Key', 'wcpk' ),
-			array( $this, 'wcpk_wc_render_metabox_content' ),
-			'product',
-			'side',
-			'default'
-		);
+		add_meta_box( 'wcpk_wc_metaboxes', __( 'Select Product Key', 'wcpk' ),
+			array( $this, 'wcpk_wc_render_metabox_content' ), 'product', 'side', 'default' );
 	}
 
 	/**
@@ -206,33 +194,26 @@ class Wcpk_Metaboxes {
 		// Output the select list of product keys ?>
 		<p>Hold down Ctrl (Windows) or Command (Mac) to select multiple options.</p>
 		<select name="wcpk_selected_values[]" id="wcpk_selected_values" multiple style="width:100%;">
-			
 			<!-- First Option-->
 			<option value="null" <?php
-				if ( '' == $wcpk_product_key_data || '1' == sizeof( $wcpk_product_key_data ) && in_array( 'null', $wcpk_product_key_data ) ) :
-					echo 'selected';
+				if ( '' == $wcpk_product_key_data || '1' == sizeof( $wcpk_product_key_data ) && in_array( 'null', $wcpk_product_key_data ) ) : ?>
+					selected<?php
 				endif; ?>
 			><!-- DONT REMOVE - ENDS option -->
 			<?php echo __( 'None', 'wcpk' ); ?></option><?php
-			
 			foreach ( $wcpk_product_keys as $wcpk_product_key ) : 
 				$wcpk_key_value = $wcpk_product_key->ID; ?>
-				
 				<option value="<?php echo esc_attr( $wcpk_key_value ); ?>"<?php
 					if ( '' != $wcpk_product_key_data ) :
-						if ( in_array( $wcpk_key_value, $wcpk_product_key_data ) ) :
-							echo 'selected';
+						if ( in_array( $wcpk_key_value, $wcpk_product_key_data ) ) : ?>
+							selected<?php
 						endif;
 					endif; ?>
 				><!-- DONT REMOVE - ENDS option --><?php 
 					echo esc_attr( $wcpk_product_key->post_title ); ?>
-					
 				</option><?php
-			
 			endforeach; ?>
-		
 		</select><?php
-
 		// Reset postdata cause that's the rad thing to do.
 		wp_reset_postdata(); 
 	}
@@ -242,7 +223,7 @@ class Wcpk_Metaboxes {
  * Instantiate the class.
  * @since 1.0
  */
-function call_wcpk_metaboxe() {
+function call_wcpk_metabox() {
 	new Wcpk_Metaboxes();
 }
 
@@ -251,6 +232,6 @@ function call_wcpk_metaboxe() {
  * @since 1.0
  */
 if ( is_admin() ) {
-	add_action( 'load-post.php', 'call_wcpk_metaboxe' );
-	add_action( 'load-post-new.php', 'call_wcpk_metaboxe' );
+	add_action( 'load-post.php', 'call_wcpk_metabox' );
+	add_action( 'load-post-new.php', 'call_wcpk_metabox' );
 }

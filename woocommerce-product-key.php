@@ -78,9 +78,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 */
 		function wcpk_enqueue_style() {
 			wp_enqueue_style( 'wcpk-style', plugins_url( '/css/wcpk.css', __FILE__ ), '22062015' );
-			if ( 'wcpk-image-font' == get_option( 'wcpk_key_type' ) ) :
-				wp_enqueue_style( 'wcpk-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', '04072015' );
-			endif;
 		}
 
 	} // END WooC_PK class
