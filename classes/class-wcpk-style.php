@@ -35,9 +35,11 @@ class Wcpk_Style {
 
         <style type="text/css">
             /* Feature Image Options */
-            .wcpk_item {
-                /* Image Width */
-                max-width: <?php echo $wcpk_customizer_settings['image_width']; ?>;
+            .wcpk-item { <?php 
+                if ( array_key_exists( 'image_width', $wcpk_customizer_settings ) ) : ?>
+                    /* Image Width */
+                    max-width: <?php echo $wcpk_customizer_settings['image_width']; ?>;
+                <?php endif; ?>
                 /* Border Width */
                 border-width: <?php echo $wcpk_customizer_settings['image_border']; ?>;
                 /* Border Color */

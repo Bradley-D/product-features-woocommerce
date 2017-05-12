@@ -137,7 +137,7 @@ class Wcpk_Settings {
 		// Image Width 
 		$wp_customize->add_setting( 'wcpk_customizer[image_width]',
 			array(
-				'default'           => 'wcpk_image_width_six',
+				'default'           => '16.5%',
 				//'sanitize_callback' => 'wcpk_sanitize_image_width',
 			)
 		);
@@ -148,12 +148,12 @@ class Wcpk_Settings {
 				'section'  => 'wcpk_options_fi',
 				'type'     => 'select',
 				'choices'  => array(
-					'wcpk_image_width_eight'  => __( '8 Per Row', 'wcpk' ), // 8
-					'wcpk_image_width_six'    => __( '6 Per Row' , 'wcpk' ), // 6
-					'wcpk_image_width_five'   => __( '5 Per Row', 'wcpk' ), // 5
-					'wcpk_image_width_four'   => __( '4 Per Row', 'wcpk' ), // 4
-					'wcpk_image_width_three'  => __( '3 Per Row', 'wcpk' ), // 3
-					'wcpk_image_width_two'    => __( '2 Per Row', 'wcpk' ), // 2
+					'12.5%'  => __( '8 Per Row', 'wcpk' ), // 8
+					'16.5%'  => __( '6 Per Row' , 'wcpk' ), // 6
+					'20%'    => __( '5 Per Row', 'wcpk' ), // 5
+					'25%'    => __( '4 Per Row', 'wcpk' ), // 4
+					'33.33%' => __( '3 Per Row', 'wcpk' ), // 3
+					'50%'    => __( '2 Per Row', 'wcpk' ), // 2
 				),
 			)
 		);
