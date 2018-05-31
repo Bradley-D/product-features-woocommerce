@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: WooCommerce Product Key
-Plugin URI: 
-Description: WooCommerce Product Key allows you to ceasily create a key of features for your products.
+Plugin Name: Product Key For WooCommerce
+Plugin URI:
+Description: Product Key for WooCommerce allows you to ceasily create a key of features for your products.
 Version: 1.0
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
@@ -47,8 +47,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * The Constructor.
 		 * @since 1.0
 		 */
-		function __construct() {
-			$this->init();
+		public function __construct() {
+			$this->wcpk_add_remove_actions();
 			$this->wcpk_includes();
 		}
 
@@ -56,7 +56,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * Init.
 		 * @since 1.0
 		 */
-		function init() {
+		public function wcpk_add_remove_actions() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'wcpk_enqueue_style' ) );
 		}
 
@@ -64,7 +64,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * Add the includes.
 		 * @since 1.0
 		 */
-		function wcpk_includes() {
+		public function wcpk_includes() {
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-cpt.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-settings.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-wcpk-metaboxes.php';
@@ -76,7 +76,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * Add Product Key styles.
 		 * @since 1.0
 		 */
-		function wcpk_enqueue_style() {
+		public function wcpk_enqueue_style() {
 			wp_enqueue_style( 'wcpk-style', plugins_url( '/css/wcpk.css', __FILE__ ), '22062015' );
 		}
 

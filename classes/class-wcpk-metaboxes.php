@@ -14,17 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) :
 endif;
 
 
-class Wcpk_Metaboxes { 
+class Wcpk_Metaboxes {
 
 	/**
 	 * The Constructor.
 	 * @since 1.0
 	 */
-	function __construct() {
-		$this->init();
+	public function __construct() {
+		$this->wcpk_add_remove_actions();
 	}
 
-	function init() {
+	public function wcpk_add_remove_actions() {
 		// Product Key
 		add_action( 'add_meta_boxes', array( $this, 'wcpk_add_metabox' ) );
 		add_action( 'save_post', array( $this, 'wcpk_save_metabox' ) );
@@ -37,7 +37,7 @@ class Wcpk_Metaboxes {
 	 * Product Key: Adds metabox container
 	 * @since 1.0
 	 */
-	function wcpk_add_metabox() {
+	public function wcpk_add_metabox() {
 		add_meta_box( 'wcpk_metaboxes', __( 'WooCommerce Product Key', 'wcpk' ),
 			array( $this, 'wcpk_render_metabox_content' ), 'product-key', 'normal', 'low' );
 	}
@@ -46,7 +46,7 @@ class Wcpk_Metaboxes {
 	 * Product Key: Save the meta when the post is saved.
 	 * @since 1.0
 	 */
-	public function wcpk_save_metabox( $post_id ) {	
+	public function wcpk_save_metabox( $post_id ) {
 		/*
 		 * We need to verify this came from the our screen and with proper authorization,
 		 * because save_post can be triggered at other times.
@@ -96,10 +96,10 @@ class Wcpk_Metaboxes {
 	 * Product Key: Render Meta Box content.
 	 * @since 1.0
 	 */
-	// Font awesome selects, will need to check against 4.3 version 
+	// Font awesome selects, will need to check against 4.3 version
 	// https://github.com/FortAwesome/Font-Awesome/wiki/Font-Awesome-HTML-Dropdown-Select-List
 	public function wcpk_render_metabox_content( $post ) {
-	
+
 		// Add an nonce field so we can check for it later.
 		wp_nonce_field( 'wcpk_inner_custom_box', 'wcpk_inner_custom_box_nonce' );
 
@@ -111,7 +111,7 @@ class Wcpk_Metaboxes {
 		<p><label for="wcpk-textarea_field"><?php echo _e( 'Tooltip Text', 'wcpk' ); ?></label><br/>
 			<textarea name="wcpk_textarea_field" id="wcpk_textarea_field" cols="60" rows="4"><?php echo esc_attr( $wcpk_textarea_field ); ?></textarea></p>
 
-		<p><label for="wcpk_text_field"><?php echo _e( 'Description for this field', 'wcpk' ); ?></label><br/> 
+		<p><label for="wcpk_text_field"><?php echo _e( 'Description for this field', 'wcpk' ); ?></label><br/>
 			<input type="text" id="wcpk_text_field" name="wcpk_text_field" value="<?php echo esc_attr( $wcpk_text_field ); ?>" size="60" /></p><?php
 	}
 
@@ -119,7 +119,7 @@ class Wcpk_Metaboxes {
 	 * WC Product: Adds metabox container
 	 * @since 1.0
 	 */
-	function wcpk_wc_add_metabox() {	
+	public function wcpk_wc_add_metabox() {
 		add_meta_box( 'wcpk_wc_metaboxes', __( 'Select Product Key', 'wcpk' ),
 			array( $this, 'wcpk_wc_render_metabox_content' ), 'product', 'side', 'default' );
 	}
@@ -189,7 +189,7 @@ class Wcpk_Metaboxes {
 		);
 
 		// Use get_posts with args to return product keys
-		$wcpk_product_keys = get_posts( $wcpk_product_key_args ); 
+		$wcpk_product_keys = get_posts( $wcpk_product_key_args );
 
 		// Output the select list of product keys ?>
 		<p>Hold down Ctrl (Windows) or Command (Mac) to select multiple options.</p>
@@ -201,7 +201,7 @@ class Wcpk_Metaboxes {
 				endif; ?>
 			><!-- DONT REMOVE - ENDS option -->
 			<?php echo __( 'None', 'wcpk' ); ?></option><?php
-			foreach ( $wcpk_product_keys as $wcpk_product_key ) : 
+			foreach ( $wcpk_product_keys as $wcpk_product_key ) :
 				$wcpk_key_value = $wcpk_product_key->ID; ?>
 				<option value="<?php echo esc_attr( $wcpk_key_value ); ?>"<?php
 					if ( '' != $wcpk_product_key_data ) :
@@ -209,13 +209,13 @@ class Wcpk_Metaboxes {
 							selected<?php
 						endif;
 					endif; ?>
-				><!-- DONT REMOVE - ENDS option --><?php 
+				><!-- DONT REMOVE - ENDS option --><?php
 					echo esc_attr( $wcpk_product_key->post_title ); ?>
 				</option><?php
 			endforeach; ?>
 		</select><?php
 		// Reset postdata cause that's the rad thing to do.
-		wp_reset_postdata(); 
+		wp_reset_postdata();
 	}
 }
 

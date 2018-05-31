@@ -19,11 +19,11 @@ class Wcpk_Cpt {
 	 * The Constructor.
 	 * @since 1.0
 	 */
-	function __construct() {
-		$this->init();
+	public function __construct() {
+		$this->wcpk_add_remove_actions();
 	}
 
-	function init() {
+	public function wcpk_add_remove_actions() {
 		add_action( 'init', array( $this, 'wcpk_cpt' ) );
 	}
 
@@ -31,7 +31,7 @@ class Wcpk_Cpt {
 	 * Register Product Key custom post type
 	 * @since 1.0
 	 */
-	function wcpk_cpt() {
+	public function wcpk_cpt() {
 		$labels = array(
 			'name'               => _x( 'Product Keys', 'post type general name', 'wcpk' ),
 			'singular_name'      => _x( 'Product Key', 'post type singular name', 'wcpk' ),
@@ -59,7 +59,7 @@ class Wcpk_Cpt {
 			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => false,
-			'menu_position'      => null,
+			'menu_position'      => 58,
 			'menu_icon'          => 'dashicons-admin-network',
 			'supports'           => array( 'title', 'thumbnail' )
 		);

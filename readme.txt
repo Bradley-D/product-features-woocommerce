@@ -19,9 +19,9 @@ WooCommerce Product Key allows you to ceasily create a key of features for your 
 
 = WooCommerce Compatibility =
 
-Tested up to 
+Tested up to
 
-1. Upload WooCommerce RRP to the `/wp-content/plugins/` directory
+1. Upload WooCommerce Product Key to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to WooCommerce > Settings and add your text to the input areas in "Currency Options". See Screenshots for a visual explanation.
 

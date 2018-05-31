@@ -14,12 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) :
 endif;
 
 class Wcpk_Output {
-	
+
 	/**
 	 * The Constructor.
 	 * @since 1.0
 	 */
-	function __construct() {
+	public function __construct() {
 		$this->init();
 		$this->wcpk_output_location();
 	}
@@ -28,19 +28,18 @@ class Wcpk_Output {
 	 * Init.
 	 * @since 1.0
 	 */
-	function init() {
+	public function init() {
 		$test = get_theme_mod( 'wcpk_image_width' );
-		var_dump($test);
 	}
 
 	/**
 	 * Output location - Single Product.
 	 * @since 1.0
 	 */
-	function wcpk_output_location() {
+	public function wcpk_output_location() {
 		// Location to add the product key(s)
 		$wcpk_render_location_setting = get_theme_mod( 'wcpk_render_location', 'wcpk_after_short_desc' );
-		
+
 		switch ( $wcpk_render_location_setting ) :
 			case 'wcpk_after_gallery' :
 				add_action( 'woocommerce_before_single_product_summary', array( $this, 'wcpk_output_single_product'), 21 );
@@ -67,9 +66,10 @@ class Wcpk_Output {
 	 * Render output - Single Product
 	 * @since 1.0
 	 */
-	function wcpk_output_single_product() {
+	public function wcpk_output_single_product() {
 		// Get the product key(s) ID for the product
 		$wcpk_product_key_check = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true );
+		print_r( $wcpk_product_key_check );
 
 		// If product keys are assigned to product output
 		if ( '' != $wcpk_product_key_check ) :
@@ -90,6 +90,7 @@ class Wcpk_Output {
 						if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
 							// Get the product key assets
 							$wcpk_tooltip_text = get_the_content();
+							print_r( "tooltip check" . $wcpk_tooltip_text);
 							$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
 							// Output the product keys ?>
 							<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="<?php echo $wcpk_tooltip_text; ?>"><?php echo $wcpk_image; ?></div></a><?php

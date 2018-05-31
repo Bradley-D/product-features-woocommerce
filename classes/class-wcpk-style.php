@@ -15,11 +15,11 @@ endif;
 
 class Wcpk_Style {
 
-    function __construct() {
-        $this->init();
+    public function __construct() {
+        $this->wcpk_add_remove_actions();
     }
 
-    function init() {
+    public function wcpk_add_remove_actions() {
         add_action( 'wp_head', array( $this, 'wcpk_customizer_css' ) );
     }
 
@@ -27,20 +27,14 @@ class Wcpk_Style {
      * Customizer styles
      * @since 1.0
      */
-    function wcpk_customizer_css() { ?>
+    public function wcpk_customizer_css() { ?>
         <style type="text/css">
             /* Feature Image Options */
-<<<<<<< HEAD
-            .wcpk-item { <?php 
+            .wcpk-item { <?php
                 if ( array_key_exists( 'image_width', $wcpk_customizer_settings ) ) : ?>
                     /* Image Width */
                     max-width: <?php echo $wcpk_customizer_settings['image_width']; ?>;
                 <?php endif; ?>
-=======
-            .wcpk-item {
-                /* Image Width */
-                max-width: <?php echo get_theme_mod( 'wcpk_image_width' ); ?>%;
->>>>>>> origin/master
                 /* Border Width */
                 border-width: <?php echo get_theme_mod( 'wcpk_image_border' ); ?>px;
                 /* Border Color */
