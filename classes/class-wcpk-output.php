@@ -68,46 +68,29 @@ class Wcpk_Output {
 	 */
 	public function wcpk_output_single_product() {
 		// Get the product key(s) ID for the product
-		$wcpk_product_key_check = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true );
-		print_r( $wcpk_product_key_check );
+		$wcpk_product_key = get_post_meta( get_the_ID(), '_wcpk_product_key_values', true );
 
 		// If product keys are assigned to product output
-		if ( '' != $wcpk_product_key_check ) :
+		if ( '' != $wcpk_product_key ) :
 
-			// Get post type product key for query
-			$wcpk_args = array(
-				'post_type' => 'product-key',
-			);
+			$wcpk_render = '<div class="wcpk-wrapper">';
 
-			// WCPK Query
-			$wcpk_query = new WP_Query( $wcpk_args );
+				foreach ( $wcpk_product_key as $keyId => $valueId ) :
+					$wcpk_object = get_post( $valueId );
+					$wcpk_object_title = $wcpk_object->post_title;
+					$wcpk_tooltip = get_post_meta( $valueId, '_wcpk_textarea_meta_value_key', true );
+					$wcpk_field_description = get_post_meta( $valueId, '_wcpk_text_field_meta_value_key', true );
+					$wcpk_key_icon = ( '' != get_the_post_thumbnail( $valueId, 'product_key_thumb' ) ? get_the_post_thumbnail( $valueId, 'product_key_thumb' ) : $wcpk_object_title );
+					//Output the product keys
+					$wcpk_render .= '<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-html="true" data-tooltip="' . $wcpk_object_title . ' - ' . $wcpk_tooltip . '">' . $wcpk_key_icon . '</div></a>';
+				endforeach;
 
-			// Loop through the WCPK query
-			if ( $wcpk_query->have_posts() ) : ?>
-				<div class="wcpk-wrapper"><?php
-					while ( $wcpk_query->have_posts() ) : $wcpk_query->the_post();
-						// The product key ID(s) are in the product key check variable it is time to party
-						if ( in_array( get_the_ID(), $wcpk_product_key_check ) ) :
-							// Get the product key assets
-							$wcpk_tooltip_text = get_the_content();
-							print_r( "tooltip check" . $wcpk_tooltip_text);
-							$wcpk_image = get_the_post_thumbnail( get_the_ID(), 'product_key_thumb' );
-							// Output the product keys ?>
-							<div class="wcpk-item"><a class="wcpk-tooltip" href="#" data-tooltip="<?php echo $wcpk_tooltip_text; ?>"><?php echo $wcpk_image; ?></div></a><?php
-						endif;
-					endwhile; ?>
-				</div><?php
-			endif;
+			$wcpk_render .= '</div>';
 
-			// Restore the data
-			wp_reset_postdata();
+			echo $wcpk_render;
 
 		endif;
 	}
-
-	// function wcpk_render_output_archive() {}
-
-	// function wcpk_render_output_single_key() {}
 }
 
 /**
