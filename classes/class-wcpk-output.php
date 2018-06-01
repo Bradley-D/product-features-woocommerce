@@ -87,10 +87,9 @@ class Wcpk_Output {
 
 			$wcpk_render .= '</div>';
 
-		endif;
+			echo $wcpk_render;
 
-		echo $wcpk_render;
-		
+		endif;
 	}
 }
 

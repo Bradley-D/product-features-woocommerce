@@ -30,7 +30,6 @@ class Wcpk_Settings {
 	 */
 	public function wcpk_media() {
 		add_image_size( 'product_key_thumb', 100, 100, true );
-		//add_image_size( 'product_key_main', 300, 300, true );
 	}
 
 	/**
@@ -81,7 +80,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_render_location',
 			array(
 				'default' => 'wcpk_after_short_desc',
-				//'sanitize_callback' => 'wcpk_sanitize_location',
+				'sanitize_callback' => array( $this, 'wcpk_sanitize_location' ),
 			)
 		);
 		$wp_customize->add_control( 'wcpk_render_location',
@@ -109,7 +108,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_image_width',
 			array(
 				'default'           => '16.5%',
-				//'sanitize_callback' => 'wcpk_sanitize_image_width',
+				'sanitize_callback' => array( $this, 'wcpk_sanitize_image_width' ),
 			)
 		);
 		$wp_customize->add_control( 'wcpk_image_width',
@@ -132,7 +131,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_image_border',
 			array(
 				'default'           => 'wcpk_image_border_zero',
-				//'sanitize_callback' => 'wcpk_sanitize_border_width',
+				'sanitize_callback' => array( $this, 'wcpk_sanitize_border_width' ),
 			)
 		);
 		$wp_customize->add_control( 'wcpk_image_border',
@@ -158,7 +157,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_border_color',
 			array(
 				'default'           => '#ddd',
-				'sanitize_callback' => 'sanitize_hex_color',
+				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_border_color',
@@ -172,7 +171,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_image_padding',
 			array(
 				'default'           => 'wcpk_image_padding_zero',
-				//'sanitize_callback' => 'wcpk_sanitize_image_padding',
+				'sanitize_callback' => array( $this, 'wcpk_sanitize_image_padding' ),
 			)
 		);
 		$wp_customize->add_control( 'wcpk_image_padding',
@@ -198,7 +197,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_image_bg',
 			array(
 				'default'           => '#fff',
-				'sanitize_callback' => 'sanitize_hex_color',
+				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_image_bg',
@@ -217,7 +216,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_tooltip_font_color',
 			array(
 				'default'           => '#fff',
-				'sanitize_callback' => 'sanitize_hex_color',
+				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_tooltip_font_color',
@@ -231,7 +230,7 @@ class Wcpk_Settings {
 		$wp_customize->add_setting( 'wcpk_tooltip_bg',
 			array(
 				'default'           => '#333',
-				'sanitize_callback' => 'sanitize_hex_color',
+				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'wcpk_tooltip_bg',
@@ -268,96 +267,96 @@ class Wcpk_Settings {
 	 * @since 1.0
 	 */
 	// Location
-	// public function wcpk_sanitize_location( $input ) {
-	// 	$wcpk_valid_location = array(
-	// 		'wcpk_after_gallery'      => 'After product gallery',
-	// 		'wcpk_after_heading'      => 'After product heading',
-	// 		'wcpk_after_price'        => 'After product price',
-	// 		'wcpk_after_short_desc'   => 'After short description',
-	// 		'wcpk_after_add_cart'     => 'After add to cart',
-	// 		'wcpk_after_product_meta' => 'After product meta',
-	// 	);
+	function wcpk_sanitize_location( $input ) {
+		$wcpk_valid_location = array(
+			'wcpk_after_gallery'      => 'After product gallery',
+			'wcpk_after_heading'      => 'After product heading',
+			'wcpk_after_price'        => 'After product price',
+			'wcpk_after_short_desc'   => 'After short description',
+			'wcpk_after_add_cart'     => 'After add to cart',
+			'wcpk_after_product_meta' => 'After product meta',
+		);
 
-	// 	if ( array_key_exists( $input, $wcpk_valid_location ) ) :
-	// 		return $input;
-	// 	else :
-	// 		return '';
-	// 	endif;
-	// }
+		if ( array_key_exists( $input, $wcpk_valid_location ) ) :
+			return $input;
+		else :
+			return '';
+		endif;
+	}
 
-	// // Image Width
-	// public function wcpk_sanitize_image_width( $input ) {
-	// 	$wcpk_valid_image_width = array(
-	// 		'wcpk_image_width_eight' => '8 Per Row',
-	// 		'wcpk_image_width_six'   => '6 Per Row',
-	// 		'wcpk_image_width_five'  => '5 Per Row',
-	// 		'wcpk_image_width_four'  => '4 Per Row',
-	// 		'wcpk_image_width_three' => '3 Per Row',
-	// 		'wcpk_image_width_two'   => '2 Per Row',
-	// 	);
+	// Image Width
+	public function wcpk_sanitize_image_width( $input ) {
+		$wcpk_valid_image_width = array(
+			'wcpk_image_width_eight' => '8 Per Row',
+			'wcpk_image_width_six'   => '6 Per Row',
+			'wcpk_image_width_five'  => '5 Per Row',
+			'wcpk_image_width_four'  => '4 Per Row',
+			'wcpk_image_width_three' => '3 Per Row',
+			'wcpk_image_width_two'   => '2 Per Row',
+		);
 
-	// 	if ( array_key_exists( $input, $wcpk_valid_image_width ) ) :
-	// 		return $wcpk_valid_image_width;
-	// 	else :
-	// 		return '';
-	// 	endif;
-	// }
-	// // Border Width
-	// public function wcpk_sanitize_border_width( $input ) {
-	// 	$wcpk_valid_border_width = array(
-	// 		'wcpk_image_border_zero'   => '0px',
-	// 		'wcpk_image_border_one'    => '1px',
-	// 		'wcpk_image_border_two'    => '2px',
-	// 		'wcpk_image_border_three'  => '3px',
-	// 		'wcpk_image_border_four'   => '4px',
-	// 		'wcpk_image_border_five'   => '5px',
-	// 		'wcpk_image_border_six'    => '6px',
-	// 		'wcpk_image_border_seven'  => '7px',
-	// 		'wcpk_image_border_eight'  => '8px',
-	// 	);
+		if ( array_key_exists( $input, $wcpk_valid_image_width ) ) :
+			return $wcpk_valid_image_width;
+		else :
+			return '';
+		endif;
+	}
+	// Border Width
+	public function wcpk_sanitize_border_width( $input ) {
+		$wcpk_valid_border_width = array(
+			'wcpk_image_border_zero'   => '0px',
+			'wcpk_image_border_one'    => '1px',
+			'wcpk_image_border_two'    => '2px',
+			'wcpk_image_border_three'  => '3px',
+			'wcpk_image_border_four'   => '4px',
+			'wcpk_image_border_five'   => '5px',
+			'wcpk_image_border_six'    => '6px',
+			'wcpk_image_border_seven'  => '7px',
+			'wcpk_image_border_eight'  => '8px',
+		);
 
-	// 	if ( array_key_exists( $input, $wcpk_valid_border_width ) ) :
-	// 		return $wcpk_valid_border_width;
-	// 	else :
-	// 		return '';
-	// 	endif;
-	// }
-	// // Image padding
-	// public function wcpk_sanitize_image_padding( $input ) {
-	// 	$wcpk_valid_image_padding = array(
-	// 		'wcpk_image_padding_zero'   => '0px',
-	// 		'wcpk_image_padding_one'    => '1px',
-	// 		'wcpk_image_padding_two'    => '2px',
-	// 		'wcpk_image_padding_three'  => '3px',
-	// 		'wcpk_image_padding_four'   => '4px',
-	// 		'wcpk_image_padding_five'   => '5px',
-	// 		'wcpk_image_padding_six'    => '6px',
-	// 		'wcpk_image_padding_seven'  => '7px',
-	// 		'wcpk_image_padding_eight'  => '8px',
-	// 	);
+		if ( array_key_exists( $input, $wcpk_valid_border_width ) ) :
+			return $wcpk_valid_border_width;
+		else :
+			return '';
+		endif;
+	}
+	// Image padding
+	public function wcpk_sanitize_image_padding( $input ) {
+		$wcpk_valid_image_padding = array(
+			'wcpk_image_padding_zero'   => '0px',
+			'wcpk_image_padding_one'    => '1px',
+			'wcpk_image_padding_two'    => '2px',
+			'wcpk_image_padding_three'  => '3px',
+			'wcpk_image_padding_four'   => '4px',
+			'wcpk_image_padding_five'   => '5px',
+			'wcpk_image_padding_six'    => '6px',
+			'wcpk_image_padding_seven'  => '7px',
+			'wcpk_image_padding_eight'  => '8px',
+		);
 
-	// 	if ( array_key_exists( $input, $wcpk_valid_image_padding ) ) :
-	// 		return $wcpk_valid_image_padding;
-	// 	else :
-	// 		return '';
-	// 	endif;
-	// }
-	// // Font Awesome size
-	// public function wcpk_sanitize_fa_size( $input ) {
-	// 	$wcpk_valid_fa_size = array(
-	// 		'wcpk-fa-ten'       => '10px',
-	// 		'wcpk_fa_twelve'    => '12px',
-	// 		'wcpk_fa_fourteen'  => '14px',
-	// 		'wcpk_fa_sixteen'   => '16px',
-	// 		'wcpk_fa_eightteen' => '18px',
-	// 	);
+		if ( array_key_exists( $input, $wcpk_valid_image_padding ) ) :
+			return $wcpk_valid_image_padding;
+		else :
+			return '';
+		endif;
+	}
+	// Font Awesome size
+	public function wcpk_sanitize_fa_size( $input ) {
+		$wcpk_valid_fa_size = array(
+			'wcpk-fa-ten'       => '10px',
+			'wcpk_fa_twelve'    => '12px',
+			'wcpk_fa_fourteen'  => '14px',
+			'wcpk_fa_sixteen'   => '16px',
+			'wcpk_fa_eightteen' => '18px',
+		);
 
-	// 	if ( array_key_exists( $input, $wcpk_valid_fa_size ) ) :
-	// 		return $wcpk_valid_fa_size;
-	// 	else :
-	// 		return '';
-	// 	endif;
-	// }
+		if ( array_key_exists( $input, $wcpk_valid_fa_size ) ) :
+			return $wcpk_valid_fa_size;
+		else :
+			return '';
+		endif;
+	}
 
 } // END Wcpk_Settings class
 

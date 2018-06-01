@@ -23,7 +23,10 @@ Tested up to
 
 1. Upload WooCommerce Product Key to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to WooCommerce > Settings and add your text to the input areas in "Currency Options". See Screenshots for a visual explanation.
+3.
+4.
+5.
+6.
 
 == Frequently Asked Questions ==
 
@@ -32,5 +35,11 @@ Tested up to
 
 == Changelog ==
 
+= 1.0.2 =
+* Added ability to output FontAwesome as an icon.
+
+= 1.0.1 =
+* Changed the method to render the product keys on a product so it is more efficient.
+
 = 1.0 =
-* Original commit and released to the world
+* Original commit and released to the world.

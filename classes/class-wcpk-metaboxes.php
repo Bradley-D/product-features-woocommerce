@@ -84,7 +84,7 @@ class Wcpk_Metaboxes {
 			return;
 		endif;
 		// Sanitize the user input.
-		$wcpk_textarea_data = sanitize_text_field( $_POST['wcpk_textarea_field'] );
+		$wcpk_textarea_data = sanitize_textarea_field( $_POST['wcpk_textarea_field'] );
 		$wcpk_text_data = sanitize_text_field( $_POST['wcpk_text_field'] );
 
 		// Update the meta field.
