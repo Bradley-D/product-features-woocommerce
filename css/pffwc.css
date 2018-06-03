@@ -1,23 +1,23 @@
-.wcpk-wrapper {
+.pffwc-wrapper {
 	display: inline-block;
 }
 
-.wcpk-wrapper {
+.pffwc-wrapper {
 	width: 100%;
 }
 
-.wcpk-item {
+.pffwc-item {
     display: inline-flex;
 	margin-right: 2%;
 	float: left;
 }
 
-.wcpk-tooltip {
+.pffwc-tooltip {
     display: inline-block;
     position: relative;
 }
 
-.wcpk-tooltip:hover:after {
+.pffwc-tooltip:hover:after {
     background: #333;
     background: rgba(0,0,0,.8);
     border-radius: 5px;
@@ -31,7 +31,7 @@
     width: 220px;
 }
 
-.wcpk-tooltip:hover:before {
+.pffwc-tooltip:hover:before {
     border: solid;
     border-color: #333 transparent;
     border-width: 6px 6px 0 6px;
