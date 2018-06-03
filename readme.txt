@@ -1,6 +1,6 @@
 === Product Features For WooCommerce ===
 Contributors: Brad Davis
-Tags: woocommerce, product-key
+Tags: woocommerce, product, product-features
 Requires at least:
 Tested up to:
 Stable tag: 1.1
