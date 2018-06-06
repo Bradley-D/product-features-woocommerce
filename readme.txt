@@ -2,7 +2,7 @@
 Contributors: Brad Davis
 Tags: woocommerce, product, product-features
 Requires at least:
-Tested up to:
+Tested up to: 4.9.6
 Stable tag: 1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,19 +14,14 @@ Product Features For WooCommerce allows you to easily create a feature for your 
 Product Features For WooCommerce allows you to easily create a key of features for your products.
 
 ** Requires WooCommerce to be installed. **
+= WooCommerce Compatibility Test: v3.4.2  =
 
 == Installation ==
 
-= WooCommerce Compatibility =
-
-Tested up to
-
-1. Upload Product Features For WooCommerce to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3.
-4.
-5.
-6.
+1. Upload Product Features For WooCommerce to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Go to "Product Features" and create your features to display on the products.
+4. Go to your products and select the features you want to display.
 
 == Frequently Asked Questions ==
 = How do I add create a feature? =
@@ -36,7 +31,7 @@ Now you can add the title, provide a brief description of the feature in the "To
 = How do I assign a feature to a product for display? =
 After creating the feature, go to the product and on the right of the product and look for the "Product Features" box. Here you can select the product features you have created.
 
-If you can not see the "Product Features" box, click on "Screen Options" in the top right of the window and tick the "Product Features" checkbox. 
+If you can not see the "Product Features" box, click on "Screen Options" in the top right of the window and tick the "Product Features" checkbox.
 
 = How do I move the product features to another location? =
 When you are logged in to your site, go to "Appearance" -> "Customize" -> "WooCommerce" -> "Product Features"
@@ -84,11 +79,21 @@ You can target the tooltip box using .pffwc-item-tooltip as the selector for you
 `
 
 == Screenshots ==
-
+1. Now the product has features to help you show how awesome your products are so you can sell more.
+2. When your customers hover over the image, they get a title (Product Feature title) and description (Tooltip box text) display so you can describe your product feature.
+3. You can move the Product Features, this is "After product price" option.
+4. This is where you can find your product features on the product page.
 
 == Changelog ==
+= 1.1 =
+* Submitted to wordpress.org plugin repo
+
 = 1.0.1 =
+* Added screenshots
+* Refactored customizer so Product Feature control displays under WooCommerce.
+* Added title with filter to display on the product page.
 * Changed the method to render the product keys on a product so it is more efficient.
+* Added qTip because it is pretty awesome for tooltips.
 
 = 1.0 =
-* Original commit and released to the world.
+* Init the commit.

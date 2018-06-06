@@ -3,12 +3,14 @@
 Plugin Name: Product Features For WooCommerce
 Plugin URI:
 Description: Product Features For WooCommerce allows you to create many product features for your products and display them in a beautiful way.
-Version: 1.0
+Version: 1.1
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: pffwc
+WC requires at least: 3.0.0
+WC tested up to: 3.4.2
 
 @author		 Bradley Davis
 @package	 Product Features For WooCommerce
