@@ -112,7 +112,7 @@ class Pffwc_Metaboxes {
 	 * @since 1.0
 	 */
 	public function pffwc_wc_add_metabox() {
-		add_meta_box( 'pffwc_wc_metaboxes', __( 'Select Product Features', 'pffwc' ),
+		add_meta_box( 'pffwc_wc_metaboxes', __( 'Product Features', 'pffwc' ),
 			array( $this, 'pffwc_wc_render_metabox_content' ), 'product', 'side', 'default' );
 	}
 

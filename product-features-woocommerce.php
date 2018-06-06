@@ -78,8 +78,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 */
 		public function pffwc_enqueue_style() {
 			if ( is_product() ) :
-				wp_enqueue_style( 'qtip', plugins_url( '/assets/jquery.qtip.min.css', __FILE__ ), null, false, false);
-				wp_enqueue_script( 'qtip', plugins_url( '/assets/jquery.qtip.min.js', __FILE__ ), array('jquery'), false, true);
+				wp_enqueue_style( 'qtip', plugins_url( '/includes/jquery.qtip.min.css', __FILE__ ), null, false, false);
+				wp_enqueue_script( 'qtip', plugins_url( '/includes/jquery.qtip.min.js', __FILE__ ), array('jquery'), false, true);
 				wp_enqueue_style( 'pffwc-style', plugins_url( '/css/pffwc.css', __FILE__ ), '22062015' );
 			endif;
 		}

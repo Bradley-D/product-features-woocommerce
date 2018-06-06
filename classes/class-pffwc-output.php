@@ -60,7 +60,8 @@ class Pffwc_Output {
 		if ( '' != $pffwc_product_key ) :
 
 			$pffwc_render = '<div class="pffwc-wrapper">';
-
+				$pffwc_title = '<p class=pffwc-title>'  . apply_filters( 'pffwc_title', 'Product Features' ) . '</p>';
+				$pffwc_render .= $pffwc_title;
 				foreach ( $pffwc_product_key as $keyId => $valueId ) :
 					$pffwc_object = get_post( $valueId );
 					$pffwc_object_title = $pffwc_object->post_title;

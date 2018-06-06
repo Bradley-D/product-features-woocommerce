@@ -4,6 +4,7 @@
 
 .pffwc-wrapper {
 	width: 100%;
+	margin-bottom: 10px;
 }
 
 .pffwc-item {
@@ -12,6 +13,12 @@
 	float: left;
 	max-width: 16.5%;
 	width: 100%;
+}
+
+p.pffwc-title {
+	margin-bottom: 0;
+	font-size: 1.6em;
+	font-weight: normal;
 }
 
 .pffwc-item-anchor {
