@@ -7,11 +7,11 @@ Stable tag: 1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Product Features For WooCommerce allows you to ceasily create a key of features for your products.
+Product Features For WooCommerce allows you to easily create a feature for your products and display it so people can learn more about your product.
 
 == Description ==
 
-Product Features For WooCommerce allows you to ceasily create a key of features for your products.
+Product Features For WooCommerce allows you to easily create a key of features for your products.
 
 ** Requires WooCommerce to be installed. **
 

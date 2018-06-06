@@ -18,30 +18,18 @@ class Pffwc_Output {
 	 * @since 1.0
 	 */
 	public function __construct() {
-	//	$this->init();
-		$this->pffwc_output_location();
-	}
-
-	/**
-	 * Init.
-	 * @since 1.0
-	 */
-	public function init() {
-		//$test = get_theme_mod( 'pffwc_image_width' );
+		$this->pffwc_add_remove_actions();
 	}
 
 	/**
 	 * Output location - Single Product.
 	 * @since 1.0
 	 */
-	public function pffwc_output_location() {
+	public function pffwc_add_remove_actions() {
 		// Location to add the product key(s)
-		$pffwc_render_location_setting = get_theme_mod( 'pffwc_render_location', 'pffwc_after_short_desc' );
+		$pffwc_render_location_setting = get_theme_mod( 'pffwc_render_location' );
 
 		switch ( $pffwc_render_location_setting ) :
-			case 'pffwc_after_gallery' :
-				add_action( 'woocommerce_before_single_product_summary', array( $this, 'pffwc_output_single_product'), 21 );
-				break;
 			case 'pffwc_after_heading' :
 				add_action( 'woocommerce_single_product_summary', array( $this, 'pffwc_output_single_product' ), 6 );
 				break;
@@ -80,7 +68,7 @@ class Pffwc_Output {
 					$pffwc_field_description = get_post_meta( $valueId, '_pffwc_text_field_meta_value_key', true );
 					$pffwc_key_icon = ( '' != get_the_post_thumbnail( $valueId, 'product_key_thumb' ) ? get_the_post_thumbnail( $valueId, 'product_key_thumb' ) : $pffwc_object_title );
 					//Output the product keys
-					$pffwc_render .= '<div class="pffwc-item"><a class="pffwc-tooltip" href="#" data-tooltip="' . $pffwc_object_title . ' - ' . $pffwc_tooltip . '">' . $pffwc_key_icon . '</div></a>';
+					$pffwc_render .= '<div class="pffwc-item"><a class="pffwc-item-anchor" href="#" data-tooltip="' . $pffwc_object_title . ' - ' . $pffwc_tooltip . '">' . $pffwc_key_icon . '</div></a>';
 				endforeach;
 
 			$pffwc_render .= '</div>';

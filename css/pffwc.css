@@ -14,21 +14,17 @@
 	width: 100%;
 }
 
-.pffwc-tooltip {
+.pffwc-item-anchor {
     display: inline-block;
     position: relative;
 }
 
-.pffwc-tooltip:hover:before {
-    background: #333;
-    border-radius: 5px;
-		bottom: 100%;
-    color: #fff;
-    /* content: attr(data-tooltip); */
-		font-size: inherit;
-    left: -92px;
-    padding: 5px 15px;
-    position: absolute;
-		width: 220px;
-    z-index: 98;
+.pffwc-item-tooltip {
+	background: #333;
+	border: #333;
+	border-radius: 5px;
+	color: #fff;
+	font-size: inherit;
+	line-height: 1.4;
+	padding: 5px 15px;
 }
