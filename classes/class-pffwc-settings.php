@@ -40,8 +40,8 @@ class Pffwc_Settings {
 		// Add pffwc panel
 		$wp_customize->add_panel( 'pffwc_settings',
 			array(
-				'title'       => __( 'Product Key Settings', 'pffwc' ),
-				'description' => __( 'Personalize your product keys.', 'pffwc' ),
+				'title'       => __( 'Product Feature Settings', 'pffwc' ),
+				'description' => __( 'Personalize your product features.', 'pffwc' ),
 				'priority'    => 1000,
 			)
 		);
@@ -157,7 +157,7 @@ class Pffwc_Settings {
 		$wp_customize->add_setting( 'pffwc_border_color',
 			array(
 				'default'           => '#ddd',
-				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'pffwc_border_color',
@@ -197,7 +197,7 @@ class Pffwc_Settings {
 		$wp_customize->add_setting( 'pffwc_image_bg',
 			array(
 				'default'           => '#fff',
-				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'pffwc_image_bg',
@@ -216,7 +216,7 @@ class Pffwc_Settings {
 		$wp_customize->add_setting( 'pffwc_tooltip_font_color',
 			array(
 				'default'           => '#fff',
-				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'pffwc_tooltip_font_color',
@@ -230,7 +230,7 @@ class Pffwc_Settings {
 		$wp_customize->add_setting( 'pffwc_tooltip_bg',
 			array(
 				'default'           => '#333',
-				'sanitize_callback' => array( $this, 'sanitize_hex_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'pffwc_tooltip_bg',
@@ -285,21 +285,25 @@ class Pffwc_Settings {
 	}
 
 	// Image Width
-	public function pffwc_sanitize_image_width( $input ) {
-		$pffwc_valid_image_width = array(
-			'pffwc_image_width_eight' => '8 Per Row',
-			'pffwc_image_width_six'   => '6 Per Row',
-			'pffwc_image_width_five'  => '5 Per Row',
-			'pffwc_image_width_four'  => '4 Per Row',
-			'pffwc_image_width_three' => '3 Per Row',
-			'pffwc_image_width_two'   => '2 Per Row',
-		);
-
-		if ( array_key_exists( $input, $pffwc_valid_image_width ) ) :
-			return $pffwc_valid_image_width;
-		else :
-			return '';
-		endif;
+	public function pffwc_sanitize_image_width( $input, $setting ) {
+		// $pffwc_valid_image_width = array(
+		// 	'pffwc_image_width_eight' => '8 Per Row',
+		// 	'pffwc_image_width_six'   => '6 Per Row',
+		// 	'pffwc_image_width_five'  => '5 Per Row',
+		// 	'pffwc_image_width_four'  => '4 Per Row',
+		// 	'pffwc_image_width_three' => '3 Per Row',
+		// 	'pffwc_image_width_two'   => '2 Per Row',
+		// );
+		//
+		// if ( array_key_exists( $input, $pffwc_valid_image_width ) ) :
+		// 	return $pffwc_valid_image_width;
+		// else :
+		// 	return '';
+		// endif;
+		// Ensure unput is a slub
+		$input = sanitize_key( $input );
+		$pffwc_choices = $setting->manager->get_control( $setting->id )->choices;
+		return ( array_key_exists( $input, $pffwc_choices ) ? $input : $setting->default );
 	}
 	// Border Width
 	public function pffwc_sanitize_border_width( $input ) {
@@ -337,22 +341,6 @@ class Pffwc_Settings {
 
 		if ( array_key_exists( $input, $pffwc_valid_image_padding ) ) :
 			return $pffwc_valid_image_padding;
-		else :
-			return '';
-		endif;
-	}
-	// Font Awesome size
-	public function pffwc_sanitize_fa_size( $input ) {
-		$pffwc_valid_fa_size = array(
-			'pffwc-fa-ten'       => '10px',
-			'pffwc_fa_twelve'    => '12px',
-			'pffwc_fa_fourteen'  => '14px',
-			'pffwc_fa_sixteen'   => '16px',
-			'pffwc_fa_eightteen' => '18px',
-		);
-
-		if ( array_key_exists( $input, $pffwc_valid_fa_size ) ) :
-			return $pffwc_valid_fa_size;
 		else :
 			return '';
 		endif;

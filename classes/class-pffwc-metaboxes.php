@@ -39,7 +39,7 @@ class Pffwc_Metaboxes {
 	 */
 	public function pffwc_add_metabox() {
 		add_meta_box( 'pffwc_metaboxes', __( 'Product Features For WooCommerce', 'pffwc' ),
-			array( $this, 'pffwc_render_metabox_content' ), 'product-key', 'normal', 'low' );
+			array( $this, 'pffwc_render_metabox_content' ), 'product-features', 'normal', 'low' );
 	}
 
 	/**
@@ -80,16 +80,14 @@ class Pffwc_Metaboxes {
 		endif;
 
 		// OK, its safe for us to save the data now.
-		if ( ! isset( $_POST['pffwc_text_field'] ) ) :
+		if ( ! isset( $_POST['pffwc_textarea_field'] ) ) :
 			return;
 		endif;
 		// Sanitize the user input.
 		$pffwc_textarea_data = sanitize_textarea_field( $_POST['pffwc_textarea_field'] );
-		$pffwc_text_data = sanitize_text_field( $_POST['pffwc_text_field'] );
 
 		// Update the meta field.
 		update_post_meta( $post_id, '_pffwc_textarea_meta_value_key', $pffwc_textarea_data );
-		update_post_meta( $post_id, '_pffwc_text_field_meta_value_key', $pffwc_text_data );
 	}
 
 	/**
@@ -103,14 +101,10 @@ class Pffwc_Metaboxes {
 
 		// Use get_post_meta to retrieve an existing value from the database.
 		$pffwc_textarea_field = get_post_meta( $post->ID, '_pffwc_textarea_meta_value_key', true );
-		$pffwc_text_field = get_post_meta( $post->ID, '_pffwc_text_field_meta_value_key', true );
 
 		// Display the form, using the current value.?>
 		<p><label for="pffwc-textarea_field"><?php echo _e( 'Tooltip Text', 'pffwc' ); ?></label><br/>
-			<textarea name="pffwc_textarea_field" id="pffwc_textarea_field" cols="60" rows="4"><?php echo esc_attr( $pffwc_textarea_field ); ?></textarea></p>
-
-		<p><label for="pffwc_text_field"><?php echo _e( 'Description for this field', 'pffwc' ); ?></label><br/>
-			<input type="text" id="pffwc_text_field" name="pffwc_text_field" value="<?php echo esc_attr( $pffwc_text_field ); ?>" size="60" /></p><?php
+			<textarea name="pffwc_textarea_field" id="pffwc_textarea_field" cols="60" rows="4"><?php echo esc_attr( $pffwc_textarea_field ); ?></textarea></p><?php
 	}
 
 	/**
@@ -118,7 +112,7 @@ class Pffwc_Metaboxes {
 	 * @since 1.0
 	 */
 	public function pffwc_wc_add_metabox() {
-		add_meta_box( 'pffwc_wc_metaboxes', __( 'Select Product Key', 'pffwc' ),
+		add_meta_box( 'pffwc_wc_metaboxes', __( 'Select Product Features', 'pffwc' ),
 			array( $this, 'pffwc_wc_render_metabox_content' ), 'product', 'side', 'default' );
 	}
 
@@ -163,7 +157,7 @@ class Pffwc_Metaboxes {
 	    // OK, its safe for us to save the data now.
 
 		// Update the post meta field.
-    update_post_meta($post_id, '_pffwc_product_key_values', $_POST['pffwc_selected_values'] );
+    update_post_meta( $post_id, '_pffwc_product_key_values', $_POST['pffwc_selected_values'] );
 
 	}
 

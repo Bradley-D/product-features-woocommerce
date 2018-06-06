@@ -80,7 +80,7 @@ class Pffwc_Output {
 					$pffwc_field_description = get_post_meta( $valueId, '_pffwc_text_field_meta_value_key', true );
 					$pffwc_key_icon = ( '' != get_the_post_thumbnail( $valueId, 'product_key_thumb' ) ? get_the_post_thumbnail( $valueId, 'product_key_thumb' ) : $pffwc_object_title );
 					//Output the product keys
-					$pffwc_render .= '<div class="pffwc-item"><a class="pffwc-tooltip" href="#" data-html="true" data-tooltip="' . $pffwc_object_title . ' - ' . $pffwc_tooltip . '">' . $pffwc_key_icon . '</div></a>';
+					$pffwc_render .= '<div class="pffwc-item"><a class="pffwc-tooltip" href="#" data-tooltip="' . $pffwc_object_title . ' - ' . $pffwc_tooltip . '">' . $pffwc_key_icon . '</div></a>';
 				endforeach;
 
 			$pffwc_render .= '</div>';

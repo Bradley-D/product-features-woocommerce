@@ -58,6 +58,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 */
 		public function pffwc_add_remove_actions() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'pffwc_enqueue_style' ) );
+			add_action( 'wp_footer', array( $this, 'pffwc_add_js_head' ), 999 );
 		}
 
 		/**
@@ -69,7 +70,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-pffwc-settings.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-pffwc-metaboxes.php';
 			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-pffwc-output.php';
-			require_once trailingslashit( dirname( __FILE__ ) ) . 'classes/class-pffwc-style.php';
 		}
 
 		/**
@@ -77,7 +77,31 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 * @since 1.0
 		 */
 		public function pffwc_enqueue_style() {
-			wp_enqueue_style( 'pffwc-style', plugins_url( '/css/pffwc.css', __FILE__ ), '22062015' );
+			if ( is_product() ) :
+				wp_enqueue_style( 'qtip', plugins_url( '/assets/jquery.qtip.min.css', __FILE__ ), null, false, false);
+				wp_enqueue_script( 'qtip', plugins_url( '/assets/jquery.qtip.min.js', __FILE__ ), array('jquery'), false, true);
+				wp_enqueue_style( 'pffwc-style', plugins_url( '/css/pffwc.css', __FILE__ ), '22062015' );
+			endif;
+		}
+
+		/**
+		 * Add qTip function to DOM so we can pass it vars from php in the future.
+		 * @since 1.0
+		 */
+		public function pffwc_add_js_head() {?>
+			<script type="text/javascript">
+				(function($) {
+					$('.pffwc-wrapper .pffwc-item a[data-tooltip != ""]').qtip({
+						content: {
+							attr: 'data-tooltip'
+						},
+						position: {
+							my: 'bottom center',
+							at: 'top  center',
+						}
+					})
+				})( jQuery );
+			</script><?php
 		}
 
 	} // END Pffwc class
@@ -86,5 +110,5 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	 * Instantiate the class and let the awesomeness happen!
 	 * @since 1.0
 	 */
-	$pffwc = new Pffwc();
+	 $pffwc = new Pffwc();
 endif;

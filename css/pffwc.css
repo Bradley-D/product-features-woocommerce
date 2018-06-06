@@ -7,9 +7,11 @@
 }
 
 .pffwc-item {
-    display: inline-flex;
+  display: inline-flex;
 	margin-right: 2%;
 	float: left;
+	max-width: 16.5%;
+	width: 100%;
 }
 
 .pffwc-tooltip {
@@ -17,27 +19,16 @@
     position: relative;
 }
 
-.pffwc-tooltip:hover:after {
+.pffwc-tooltip:hover:before {
     background: #333;
-    background: rgba(0,0,0,.8);
     border-radius: 5px;
-    bottom: 110px;
+		bottom: 100%;
     color: #fff;
-    content: attr(data-tooltip);
-    left: 20%;
+    /* content: attr(data-tooltip); */
+		font-size: inherit;
+    left: -92px;
     padding: 5px 15px;
     position: absolute;
+		width: 220px;
     z-index: 98;
-    width: 220px;
-}
-
-.pffwc-tooltip:hover:before {
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 6px 6px 0 6px;
-    bottom: 104px;
-    content: "";
-    left: 50%;
-    position: absolute;
-    z-index: 99;
 }
