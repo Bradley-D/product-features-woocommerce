@@ -15,8 +15,18 @@
 }
 
 .pffwc-item-anchor {
-    display: inline-block;
-    position: relative;
+	display: inline-block;
+	position: relative;
+}
+
+.pffwc-item-anchor:hover:before {
+	border: solid;
+	border-color: #333 transparent;
+	border-width: 6px 6px 0 6px;
+	content: "";
+	left: 44%;
+	position: absolute;
+	top: -6px;
 }
 
 .pffwc-item-tooltip {
@@ -26,5 +36,6 @@
 	color: #fff;
 	font-size: inherit;
 	line-height: 1.4;
+	margin-top: -6px;
 	padding: 5px 15px;
 }
