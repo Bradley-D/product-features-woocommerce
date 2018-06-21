@@ -26,7 +26,7 @@ class Pffwc_uninstall {
 	    $pffwc_delete_posts = get_pages(
 				array(
 					'post_type' => 'product-features'
-				),
+				)
 			);
 	    foreach ( $pffwc_delete_posts as $pffwc_posts ) :
 					wp_delete_attachment( $pffwc_posts->ID, false );
