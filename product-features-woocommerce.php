@@ -3,7 +3,7 @@
 Plugin Name: Product Features For WooCommerce
 Plugin URI:
 Description: Product Features For WooCommerce allows you to create many product features for your products and display them in a beautiful way.
-Version: 1.1
+Version: 1.0
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
