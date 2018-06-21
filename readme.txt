@@ -85,15 +85,15 @@ You can target the tooltip box using .pffwc-item-tooltip as the selector for you
 4. This is where you can find your product features on the product page.
 
 == Changelog ==
-= 1.1 =
+= 1.0 =
 * Submitted to wordpress.org plugin repo
 
-= 1.0.1 =
+= 0.0.2 =
 * Added screenshots
 * Refactored customizer so Product Feature control displays under WooCommerce.
 * Added title with filter to display on the product page.
 * Changed the method to render the product keys on a product so it is more efficient.
 * Added qTip because it is pretty awesome for tooltips.
 
-= 1.0 =
+= 0.0.1 =
 * Init the commit.
