@@ -10,7 +10,7 @@ License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: pffwc
 WC requires at least: 3.0.0
-WC tested up to: 3.4.2
+WC tested up to: 3.4.3
 
 @author		 Bradley Davis
 @package	 Product Features For WooCommerce

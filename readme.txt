@@ -14,7 +14,7 @@ Product Features For WooCommerce allows you to easily create a feature for your 
 Product Features For WooCommerce allows you to easily create a key of features for your products.
 
 ** Requires WooCommerce to be installed. **
-= WooCommerce Compatibility Test: v3.4.2  =
+= WooCommerce Compatibility Test: v3.4.3  =
 
 == Installation ==
 
