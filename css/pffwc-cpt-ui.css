@@ -1,0 +1,11 @@
+/*
+ * CSS styles for Product Features for the CPT UI.
+ */
+
+#pffwc-textarea_field {
+  font-weight: bold;
+}
+
+#pffwc_textarea_field {
+  width: 100%;
+}

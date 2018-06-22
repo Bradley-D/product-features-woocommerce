@@ -104,7 +104,7 @@ class Pffwc_Metaboxes {
 
 		// Display the form, using the current value.?>
 		<p><label for="pffwc-textarea_field"><?php echo _e( 'Tooltip Text', 'pffwc' ); ?></label><br/>
-			<textarea name="pffwc_textarea_field" id="pffwc_textarea_field" cols="60" rows="4"><?php echo esc_attr( $pffwc_textarea_field ); ?></textarea></p><?php
+			<textarea name="pffwc_textarea_field" id="pffwc_textarea_field" cols="60" rows="2"><?php echo esc_attr( $pffwc_textarea_field ); ?></textarea></p><?php
 	}
 
 	/**
