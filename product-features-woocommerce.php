@@ -3,7 +3,7 @@
 Plugin Name: Product Features For WooCommerce
 Plugin URI:
 Description: Product Features For WooCommerce allows you to create many product features for your products and display them in a beautiful way.
-Version: 1.0
+Version: 1.1
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
@@ -60,6 +60,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		 */
 		public function pffwc_add_remove_actions() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'pffwc_enqueue_style' ) );
+			add_action( 'admin_head', array( $this, 'pffwc_cpt_ui_style' ) );
 		}
 
 		/**
@@ -82,9 +83,17 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			if ( is_product() ) :
 				wp_enqueue_style( 'qtip', plugins_url( '/includes/jquery.qtip.min.css', __FILE__ ), null, false, false);
 				wp_enqueue_script( 'qtip', plugins_url( '/includes/jquery.qtip.min.js', __FILE__ ), array('jquery'), false, true);
-				wp_enqueue_style( 'pffwc-style', plugins_url( '/css/pffwc.css', __FILE__ ), '22062015' );
+				wp_enqueue_style( 'pffwc-style', plugins_url( '/css/pffwc.css', __FILE__ ), '22062018' );
 			endif;
 		}
+
+		/**
+		 * Enqueue CPT UI style.
+		 * @since 1.1
+		 */
+		 public function pffwc_cpt_ui_style() {
+			 wp_enqueue_style( 'cpt-ui-style', plugins_url( '/css/pffwc-cpt-ui.css', __FILE__ ), '22062018' );
+		 }
 
 	} // END Pffwc class
 

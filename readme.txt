@@ -3,7 +3,7 @@ Contributors: Brad Davis
 Tags: woocommerce, product, product-features
 Requires at least:
 Tested up to: 4.9.6
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,9 @@ You can target the tooltip box using .pffwc-item-tooltip as the selector for you
 4. This is where you can find your product features on the product page.
 
 == Changelog ==
+= 1.1 =
+* Tooltip Text box UI update
+
 = 1.0 =
 * Submitted to wordpress.org plugin repo
 
